@@ -105,13 +105,13 @@
 							<!-- Nav Start -->
 							<div class="classynav">
 								<ul>
-									<c:if test="${sessionScope.loginId = 'admin'}">
-									<li><a href="#">Adimn</a>
+									<%-- <c:if test="${sessionScope.loginId = 'admin'}">
+									</c:if> --%>
+									<li><a href="#">Admin</a>
 										<ul class="dropdown">
-											<li><a href="aboutUs">펫 용품 등록</a></li>
+											<li><a href="Shop_InputPage">펫 용품 등록</a></li>
 											<li><a href="#">펫 등록</a></li>
 										</ul></li>
-									</c:if>
 								
 								
 									<li><a href="#">About</a>

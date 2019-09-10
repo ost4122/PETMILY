@@ -4,5 +4,6 @@
 <configuration>
 	<typeAliases> 
 		<typeAlias alias="member" type="com.project.petmily.DTO.MemberDTO"/>
+		<typeAlias alias="shop" type="com.project.petmily.DTO.ShopDTO"/>
 	</typeAliases>
 </configuration>
