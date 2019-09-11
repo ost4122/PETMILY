@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="Shop">
+<!-- 상품등록  -->
+	
+<insert id="shop_input" parameterType="shop" useGeneratedKeys="true" keyProperty="item_number">
+	INSERT INTO  item_shopping VALUES(item_numberSEQ.NEXTVAL,#{item_name},#{item_katagorie},#{item_contents},#{item_kind},#{item_price},0,0,0,0,#{item_Profile} )
+	
+	<selectKey keyProperty="item_number" resultType="int" order="AFTER">
+	SELECT item_numberSEQ.CURRVAL FROM DUAL
+	</selectKey>
+	
+	</insert>
+</mapper>

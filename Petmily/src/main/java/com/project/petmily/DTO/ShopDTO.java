@@ -1,5 +1,7 @@
 package com.project.petmily.DTO;
 
+import java.util.List;
+
 import org.springframework.web.multipart.MultipartFile;
 
 import lombok.Data;
@@ -17,7 +19,10 @@ public class ShopDTO {
 	private int item_reviewCount;		/* 용품 리뷰 수  */
 	private int item_recommend;			/* 용품 추천 수 */
 	private int item_soldCount;			/* 용품 판매 수  */
-
-	private MultipartFile img;			/* 첨부이미지  */
+	
+	private MultipartFile img;	/* 용품 프로필 */
+	private String item_Profile;
+	
+	private List<MultipartFile> imges;			/* 첨부이미지  */
 	private String item_img;			/* 첨부이미지  */
 }

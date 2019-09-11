@@ -19,6 +19,7 @@
 <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
 
 <script type="text/javascript">
+/* 스마트 에디터 */
 var oEditors = [];
 $(function(){
       nhn.husky.EZCreator.createInIFrame({
@@ -52,24 +53,37 @@ $(function(){
 </script>
 
 <script>
+/* 사진미리보기 */
+var sel_files= [];
 
-function readURL(input) {
-	 if (input.files && input.files[0]) {
-	  var reader = new FileReader();
-	  
-	  reader.onload = function (e) {
-	   $('#image_section').attr('src', e.target.result);  
-	  }
-	  
-	  reader.readAsDataURL(input.files[0]);
-	  }
-	}
-	  
-	$("#InputImg").change(function(){
-	   readURL(this);
+$(document).ready(function(){
+		$("#InputImg").on("change",handleImgsFilesSelect);
+});
+
+function handleImgsFilesSelect(e){
+	var files = e.target.files;
+	var filesArr = Array.prototype.slice.call(files);
+	
+	filesArr.forEach(function(f){
+		if(!f.type.match("image.*")){
+			alert("확장자는 이미지 확장자만 가능합니다.");
+			return;
+		}
+		
+		sel_files.push(f);
+		
+		var reader = new FileReader();
+		reader.onload = function(e){
+			var img_html = "<img src=\""+e.target.result+"\" width='150px;'/>";
+			$(".imgs_wrap").append(img_html);
+		}
+		reader.readAsDataURL(f);
 	});
+}
 
-	</script>
+
+
+</script>
 
 <body>
 
@@ -77,11 +91,11 @@ function readURL(input) {
 <table>
 
 <tr> <td> 상품 이름 : <input type="text" name="item_name" required> </td> </tr>
-<tr> <td> 상품 카테고리 : <select>
+<tr> <td> 상품 카테고리 : <select name="item_kind">
 						<option value="강아지 용품">강아지 용품</option>
 						<option value="고양이 용품">고양이 용품</option>
 																</select> </td> </tr>
-<tr> <td> 상품 종류 : <select>
+<tr> <td> 상품 종류 : <select name="item_katagorie">
 						<option value ="장난감">장난감</option>
 						<option value ="미용">미용</option>
 						<option value ="옷/잡화">옷/잡화</option>
@@ -90,13 +104,15 @@ function readURL(input) {
 																</select> </td> </tr>
 																
 <tr> <td> 상품 가격 : <input type="text" name="item_price" required> </td> </tr>
-
-<tr> <td> 첨부파일 : <input multiple="multiple" type="file" name="img" id="InputImg"> </td> </tr>
+<tr> <td> 상품 프로필 사진 : <input type="file" name="img" />  </td></tr>
+<tr> <td> 첨부파일 : <input multiple="multiple" type="file" name="imges" id="InputImg"> </td> </tr>
+<tr> <td> <div class="imgs_wrap" > </div> </td> </tr>
 
 
 <tr> <td> 상품 상세내용 :</td> </tr>
 </table>
  <textarea rows="40" cols="60" id="ir1" name="item_contents" style="width:650px; height:350px; "></textarea>
+ 
  <input type="submit" value="상품등록">
 
 </form>
