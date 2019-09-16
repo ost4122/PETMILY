@@ -11,6 +11,15 @@
 	<selectKey keyProperty="item_number" resultType="int" order="AFTER">
 	SELECT item_numberSEQ.CURRVAL FROM DUAL
 	</selectKey>
+</insert>
+
+<!-- 다중파일 저장 -->
+<insert id="shop_images" parameterType="imgDTO">
+	INSERT INTO itemImages VALUES(#{item_Number},#{multiImg})
 	
-	</insert>
+	<selectKey keyProperty="item_Number" resultType="Integer" order="BEFORE">
+	select count(*) from item_shopping
+	</selectKey>
+</insert>
+
 </mapper>

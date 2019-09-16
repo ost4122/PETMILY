@@ -27,5 +27,11 @@ public class PetmilyController {
 		
 		return "paySucess";
 	}
-
+	
+	/* 홈으로 가기 */ 
+	@RequestMapping(value = "goHome")
+	public String go_home() {
+		
+		return "home";
+	}
 }

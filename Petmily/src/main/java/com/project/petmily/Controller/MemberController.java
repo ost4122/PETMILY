@@ -44,26 +44,22 @@ public class MemberController {
 	      
 	      return "home";
 	   }
-	   /* ·Î°í Å¬¸¯ */ 
-	   @RequestMapping(value = "go_home")
-	   public String go_home() {
-	      
-	      return "home";
-	   }
-	    /*join Å¬¸¯*/
+	 
+	
+	    /*join Å¬ï¿½ï¿½*/
 	@RequestMapping(value="/JoinForm")
 	public String home1(){
 		return "memberjoin";
 	}
-	//login Å¬¸¯
+	//login Å¬ï¿½ï¿½
 	@RequestMapping(value="/LoginForm",method=RequestMethod.POST)
 	public String home2(){
 		return "LoginForm";
 	}
-	//È¸¿ø°¡ÀÔ ÇÏ°í³ª¼­
+	//È¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ï°ï¿½ï¿½ï¿½
 	@RequestMapping(value="/memberJoin",method=RequestMethod.POST)
 	public ModelAndView memberJoin(@ModelAttribute MemberDTO memberDTO) {
-		//ModelAndView °´Ã¼¸¦ »ý¼ºÇÑ´Ù.
+		//ModelAndView ï¿½ï¿½Ã¼ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½.
 		mav=new ModelAndView();
 		
 		mav=memberService.memberJoin(memberDTO);
@@ -89,7 +85,7 @@ public class MemberController {
 	mav=memberService.memberJoin(memberDTO);
 		return mav;
 	}
-	// È¸¿ø ÀÎÁõ
+	// È¸ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	@RequestMapping(value = "/approval_member.do", method = RequestMethod.POST)
 	public void approval_member(@ModelAttribute MemberDTO memberDTO, HttpServletResponse response) throws Exception{
 	memberService.approval_member(memberDTO, response);
@@ -98,7 +94,7 @@ public class MemberController {
 	@RequestMapping(value="/memberlogin",method=RequestMethod.POST)
 	public ModelAndView memberLogin(@ModelAttribute MemberDTO memberDTO,HttpServletResponse response) throws IOException {
 		
-		//ModelAndView °´Ã¼¸¦ »ý¼ºÇÑ´Ù.
+		//ModelAndView ï¿½ï¿½Ã¼ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½.
 		mav=new ModelAndView();
 		
 		mav=memberService.memberLogin(memberDTO, response);
@@ -175,13 +171,13 @@ public class MemberController {
 	}
 	
 	
-	// ºñ¹Ð¹øÈ£ Ã£±â Æû
+	// ï¿½ï¿½Ð¹ï¿½È£ Ã£ï¿½ï¿½ ï¿½ï¿½
 			@RequestMapping(value = "/find_pw_fromJSP")
 			public String find_pw_form() throws Exception{
 				return "find_pw_form";
 			}
 			
-			// ºñ¹Ð¹øÈ£ Ã£±â
+			// ï¿½ï¿½Ð¹ï¿½È£ Ã£ï¿½ï¿½
 			@RequestMapping(value = "/find_pw.do")
 			public void find_pw(@ModelAttribute MemberDTO memberDTO, HttpServletResponse response, @RequestParam("email_2") String email_2) throws Exception{
 				String email_1 = memberDTO.getEmail_1();
@@ -190,13 +186,13 @@ public class MemberController {
 				memberDTO.setEmail(email);
 			memberService.find_pw(memberDTO,response);
 			}
-			//¾ÆÀÌµð Ã£±â Æû 
+			//ï¿½ï¿½ï¿½Ìµï¿½ Ã£ï¿½ï¿½ ï¿½ï¿½ 
 			@RequestMapping(value = "/find_id_fromJSP")
 			public String find_id_form() throws Exception{
 				return "find_id_form";
 			}
 			
-			// ¾ÆÀÌµð Ã£±â
+			// ï¿½ï¿½ï¿½Ìµï¿½ Ã£ï¿½ï¿½
 			@RequestMapping(value = "/find_id.do")
 			public void find_id(@ModelAttribute MemberDTO memberDTO, HttpServletResponse response,@RequestParam("email_2") String email_2) throws Exception{
 				String email_1 = memberDTO.getEmail_1();

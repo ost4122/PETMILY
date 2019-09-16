@@ -23,6 +23,6 @@ public class ShopDTO {
 	private MultipartFile img;	/* 용품 프로필 */
 	private String item_Profile;
 	
-	private List<MultipartFile> imges;			/* 첨부이미지  */
-	private String item_img;			/* 첨부이미지  */
+	private List<MultipartFile> inputImages;			/* 첨부이미지  */
+	private List<String> item_img;				/* 첨부이미지  */
 }

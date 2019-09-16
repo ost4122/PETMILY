@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.project.petmily.DTO.ImagesDTO;
 import com.project.petmily.DTO.ShopDTO;
 import com.project.petmily.Service.ShopService;
 
@@ -45,23 +46,17 @@ public class ShopController {
 	public ModelAndView Shop_Input(@ModelAttribute ShopDTO sdto,HttpServletResponse response) 
 			throws IllegalStateException, IOException {
 		
-		long nowTime = System.currentTimeMillis();
+		ImagesDTO idto = new ImagesDTO();
 		
-		SimpleDateFormat dayTime = new SimpleDateFormat("yyyy-mm-dd hh:mm:ss");
-		
-		String str = dayTime.format(new Date(nowTime));
-		
-		String itemName = sdto.getItem_name();
-		
-		String rename = itemName += str;
 		
 		mav = new ModelAndView();
-	      
-		List<MultipartFile> fileList = sdto.getImges();
+	    
+		// 다중 파일 업로드
+		List<MultipartFile> fileList = sdto.getInputImages();
 
 		String path = "C:\\Users\\user\\git\\PETMILY\\Petmily\\src\\main\\webapp\\resources\\shopIMG";
         
-        List<String> fileNames = new ArrayList<String>();
+        List<String> images = new ArrayList<String>();
 
         
         for (MultipartFile mf : fileList) {
@@ -73,26 +68,31 @@ public class ShopController {
         	
         	long fileSize = ((MultipartFile) mf).getSize(); // 파일 사이즈
             
+            	System.out.println("★★★★fileList : " + originFileName);
 
-
-            String safeFile = originFileName + str;
+            String saveFile = path + originFileName;
             try {
-                mf.transferTo(new File(safeFile));
+            	if(!mf.isEmpty()) {
+            		mf.transferTo(new File(saveFile));
+            	}
             } catch (IllegalStateException e) {
                 e.printStackTrace();
             } catch (IOException e) {
                 e.printStackTrace();
             }
             
-            fileNames.add(originFileName);
+            images.add(originFileName);
+            // 다중파일 업로드 imagesDTO에 셋팅
+            idto.setItem_img(images);
+         
         }
+        //
         
         //상품 프로필 
         MultipartFile img = sdto.getImg();
 		
         String fileName = img.getOriginalFilename();
 		
-		String itemRename = itemName += str;
 		
 		// fileName = itemRename;
 		
@@ -103,7 +103,7 @@ public class ShopController {
 		
 		sdto.setItem_Profile(fileName);
         
-        mav = ssvc.Shop_Input(fileNames,sdto,response);
+        mav = ssvc.Shop_Input(idto,sdto,response);
         
         
         

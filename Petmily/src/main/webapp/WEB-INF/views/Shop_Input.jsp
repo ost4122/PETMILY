@@ -105,7 +105,7 @@ function handleImgsFilesSelect(e){
 																
 <tr> <td> 상품 가격 : <input type="text" name="item_price" required> </td> </tr>
 <tr> <td> 상품 프로필 사진 : <input type="file" name="img" />  </td></tr>
-<tr> <td> 첨부파일 : <input multiple="multiple" type="file" name="imges" id="InputImg"> </td> </tr>
+<tr> <td> 상세 사진 : <input multiple="multiple" type="file" name="inputImages" id="InputImg"> </td> </tr>
 <tr> <td> <div class="imgs_wrap" > </div> </td> </tr>
 
 
