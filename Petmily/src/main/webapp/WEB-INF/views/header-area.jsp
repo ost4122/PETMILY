@@ -141,7 +141,7 @@
 													<li><a href="#">곤충2</a></li>
 												</ul></li>
 										</ul></li>
-									<li><a href="contact.html">Pet Shop</a>
+									<li><a href="Shop_List?page=0">Pet Shop</a>
 										<ul class="dropdown">
 											<li><a href="#">사료</a>
 												<ul class="dropdown">

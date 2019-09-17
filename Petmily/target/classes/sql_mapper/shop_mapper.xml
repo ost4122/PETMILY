@@ -22,4 +22,26 @@
 	</selectKey>
 </insert>
 
+<!-- 글 갯수 -->
+ <select id ="listCount"  resultType="int">
+	SELECT COUNT(*) FROM PAGING
+ </select>
+ 
+ <!-- 글 목록 -->
+ <select id="shop_List" parameterType="page" resultType="shop">
+ 	SELECT PAGING.*, PAGING.RN FROM PAGING WHERE PAGING.RN BETWEEN #{startRow} AND #{endRow}
+ </select>
+ 
+ <!-- 글 상세보기 -->
+ <select id="shop_View" parameterType="int" resultType="shop">
+ 	SELECT * FROM ITEM_SHOPPING WHERE ITEM_NUMBER = #{item_number}
+ </select>
+ 
+ <!-- 다중파일 가져오기 -->
+ <select id="multyImg" parameterType="int" resultType="imgDTO">
+ 	SELECT multiImg FROM itemImages WHERE ITEM_NUMBER = #{item_number}
+ </select>
+ 
+ 	
+
 </mapper>

@@ -16,18 +16,14 @@
     <!-- Title -->
     <title>Petmily</title>
 
-    <!-- Style CSS -->
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/style.css" >
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/animate.css" >
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/bootstrap.min.css" >
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/font-awesome.min.css" >
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/owl.carousel.css" >
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/classy-nav.css" >
-
 </head>
 
 <body>
 <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
+  	
+  	<!-- ##### Header Area  ##### -->
+	<%@include file="header-area.jsp" %>
+
     <!-- Preloader -->
     <div id="preloader">
         <div class="preload-content">
@@ -35,8 +31,6 @@
         </div>
     </div>
 
-  	<!-- ##### Header Area  ##### -->
-	<%@include file="header-area.jsp" %>
 
 
     <!-- ##### Breadcumb Area Start ##### -->
@@ -154,19 +148,9 @@
 	<!-- ##### footer Area  ##### -->
 	<%@include file="footer-area.jsp" %>
     
-    <!-- ##### Instagram Feed Area End ##### -->
-
+   
     
-    <!-- jQuery (Necessary for All JavaScript Plugins) -->
-    <script src="<c:url value="resources/js/jquery/jquery-2.2.4.min.js"/>"> </script>
-    <!-- Popper js -->
-    <script src="<c:url value="resources/js/popper.min.js"/>"> </script>
-    <!-- Bootstrap js -->
-    <script src="<c:url value="resources/js/bootstrap.min.js"/>"> </script>
-    <!-- Plugins js -->
-    <script src="<c:url value="resources/js/plugins.js"/>"> </script>
-    <!-- Active js -->
-    <script src="<c:url value="resources/js/active.js"/>"> </script>
+ 
 
 
 </body>

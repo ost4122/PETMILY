@@ -70,7 +70,7 @@ public class ShopController {
             
             	System.out.println("★★★★fileList : " + originFileName);
 
-            String saveFile = path + originFileName;
+            String saveFile = path;
             try {
             	if(!mf.isEmpty()) {
             		mf.transferTo(new File(saveFile));
@@ -83,7 +83,7 @@ public class ShopController {
             
             images.add(originFileName);
             // 다중파일 업로드 imagesDTO에 셋팅
-            idto.setItem_img(images);
+            idto.setImg(images);
          
         }
         //
@@ -110,4 +110,38 @@ public class ShopController {
 		
 		return mav;
 	}
+	
+	/* 용품 목록 */
+	@RequestMapping(value = "/Shop_List")
+	public ModelAndView Shop_List(@RequestParam int page) {
+		mav = new ModelAndView();
+		
+		if(page==0) {
+			page=1;
+		}	
+		
+			
+		
+		mav = ssvc.Shop_List(page);
+		
+		
+	return mav;
+	}
+	
+	/* 용품 상세보기 */
+	@RequestMapping(value = "/Shop_View")
+	public ModelAndView Shop_View(@RequestParam int page,int item_number) {
+		mav = new ModelAndView();
+		
+		mav = ssvc.Shop_View(item_number);
+		
+		mav.addObject("page", page);
+		return mav;
+	}
+		
+		
+		
+		
+		
+	
 }

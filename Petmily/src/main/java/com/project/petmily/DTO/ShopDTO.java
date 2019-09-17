@@ -15,10 +15,10 @@ public class ShopDTO {
 	private String item_kind;			/* 용품 종류 (강아지사료,고양이사료..)*/
 	private String item_contents;		/* 용품 상세 내용*/
 	private int item_price;				/* 용품 가격  */
-	private int item_grade;				/* 용품 평점  */
 	private int item_reviewCount;		/* 용품 리뷰 수  */
 	private int item_recommend;			/* 용품 추천 수 */
 	private int item_soldCount;			/* 용품 판매 수  */
+	private double item_grade;			/* 용품 평점  */
 	
 	private MultipartFile img;	/* 용품 프로필 */
 	private String item_Profile;
