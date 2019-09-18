@@ -54,32 +54,26 @@ public class ShopController {
 		// 다중 파일 업로드
 		List<MultipartFile> fileList = sdto.getInputImages();
 
-		String path = "C:\\Users\\user\\git\\PETMILY\\Petmily\\src\\main\\webapp\\resources\\shopIMG";
         
         List<String> images = new ArrayList<String>();
 
         
         for (MultipartFile mf : fileList) {
         	
+        	String originFileName = mf.getOriginalFilename();// 원본 파일 명
         	
-        	String originFileName = mf.getOriginalFilename(); // 원본 파일 명
+        	String path = "C:\\Users\\user\\git\\PETMILY\\Petmily\\src\\main\\webapp\\resources\\shopIMG\\multyImg\\"+originFileName;
         	
         	//originFileName = rename;
         	
-        	long fileSize = ((MultipartFile) mf).getSize(); // 파일 사이즈
+        	long fileSize = mf.getSize(); // 파일 사이즈
             
             	System.out.println("★★★★fileList : " + originFileName);
 
-            String saveFile = path;
-            try {
-            	if(!mf.isEmpty()) {
-            		mf.transferTo(new File(saveFile));
+           
+            	if(!fileList.isEmpty()) {
+            		mf.transferTo(new File(path));
             	}
-            } catch (IllegalStateException e) {
-                e.printStackTrace();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
             
             images.add(originFileName);
             // 다중파일 업로드 imagesDTO에 셋팅

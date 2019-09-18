@@ -14,13 +14,6 @@ public class PetmilyController {
 	}
 	
 	
-	/* 결제 테스트 */ 
-	@RequestMapping(value = "pay_test")
-	public String pay_test() {
-		
-		return "pay_test";
-	}
-	
 	/* 결제 성공 */ 
 	@RequestMapping(value = "paySucess")
 	public String paySucess() {
@@ -33,5 +26,12 @@ public class PetmilyController {
 	public String go_home() {
 		
 		return "home";
+	}
+	
+	/*맵 테스트*/
+	@RequestMapping(value = "kakaoMap")
+	public String kakaoMap() {
+		
+		return "kakaoMap";
 	}
 }

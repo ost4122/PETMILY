@@ -28,7 +28,7 @@
  </select>
  
  <!-- 글 목록 -->
- <select id="shop_List" parameterType="page" resultType="shop">
+ <select id="shop_List" parameterType="pageDTO" resultType="shop">
  	SELECT PAGING.*, PAGING.RN FROM PAGING WHERE PAGING.RN BETWEEN #{startRow} AND #{endRow}
  </select>
  

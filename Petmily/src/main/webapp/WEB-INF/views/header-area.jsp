@@ -110,7 +110,7 @@
 									<li><a href="#">Admin</a>
 										<ul class="dropdown">
 											<li><a href="Shop_InputPage">펫 용품 등록</a></li>
-											<li><a href="#">펫 등록</a></li>
+											<li><a href="admin_pet">펫 등록</a></li>
 										</ul></li>
 								
 								
@@ -122,19 +122,19 @@
 
 									<li><a href="#">Pets</a>
 										<ul class="dropdown">
-											<li><a href="#">입양 절차</a></li>
+											<li><a href="AdoptionprocedureJsp">분양 안내</a></li>
 
 											<li><a href="#">입양 신청</a></li>
 
-											<li><a href="#">강아지</a>
+											<li><a href="Pet_Dog_List?page=1">강아지</a>
 												<ul class="dropdown">
-													<li><a href="#">대형견</a></li>
-													<li><a href="#">중형견</a></li>
-													<li><a href="#">소형견</a></li>
+													<li><a href="Pet_Dog_Big?page=1">대형견</a></li>
+													<li><a href="Pet_Dog_Medium?page=1">중형견</a></li>
+													<li><a href="Pet_Dog_Small?page=1">소형견</a></li>
 												</ul>
-											<li><a href="#">고양이</a></li>
+											<li><a href="Pet_Cat_List?page=1">고양이</a></li>
 
-											<li><a href="#">파충류</a>
+											<li><a href="Pet_Reptile_List?page=1">파충류</a>
 												<ul class="dropdown">
 													<li><a href="#">도마뱀</a></li>
 													<li><a href="#">곤충1</a></li>

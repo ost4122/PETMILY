@@ -6,6 +6,8 @@
 		<typeAlias alias="member" type="com.project.petmily.DTO.MemberDTO"/>
 		<typeAlias alias="shop" type="com.project.petmily.DTO.ShopDTO"/>
 		<typeAlias alias="imgDTO" type="com.project.petmily.DTO.ImagesDTO"/>
-		<typeAlias alias="page" type="com.project.petmily.DTO.PageDTO"/>
+		<typeAlias alias="pageDTO" type="com.project.petmily.DTO.PageDTO"/>
+		<typeAlias alias="pet" type="com.project.petmily.DTO.Pet_DTO"/>	
+		<typeAlias alias="page" type="com.project.petmily.DTO.Paging_DTO"/>
 	</typeAliases>
 </configuration>
