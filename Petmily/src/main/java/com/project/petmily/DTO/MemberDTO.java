@@ -12,11 +12,10 @@ public class MemberDTO {
 	private String name;
 	private String phone;
 	private String birth;
-	private String address_number; //¿ìÆí¹øÈ£
-	private String address_a; //µµ·Î¸í ÁÖ¼Ò
-	private String address_b; //Áö¹øÁÖ¼Ò
-	private String address_c; //»ó¼¼ÁÖ¼Ò
-	private String address_d; //Âü°íÇ×¸ñ
+	private String address_number; //ï¿½ï¿½ï¿½ï¿½ï¿½È£
+	private String address_a; //ï¿½ï¿½ï¿½Î¸ï¿½ ï¿½Ö¼ï¿½
+	private String address_b; //ï¿½ï¿½ï¿½ï¿½ï¿½Ö¼ï¿½
+	private String address_c; //ï¿½ï¿½ï¿½Ö¼ï¿½
 	private String email;
 	private String email_1;
 	private String email_2;
@@ -24,6 +23,6 @@ public class MemberDTO {
 	private String selectemail;
 	private MultipartFile joinFile;
 	private String profileimage;
-	private String appoval_status; //¾ÆÀÌµğ ÀÎÁõ »óÅÂ 
+	private String appoval_status; //ï¿½ï¿½ï¿½Ìµï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ 
 	
 }

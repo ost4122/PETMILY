@@ -107,16 +107,11 @@ public class ShopController {
 	
 	/* 용품 목록 */
 	@RequestMapping(value = "/Shop_List")
-	public ModelAndView Shop_List(@RequestParam int page) {
+	public ModelAndView Shop_List() {
 		mav = new ModelAndView();
-		
-		if(page==0) {
-			page=1;
-		}	
-		
 			
 		
-		mav = ssvc.Shop_List(page);
+		mav = ssvc.Shop_List();
 		
 		
 	return mav;
@@ -124,12 +119,47 @@ public class ShopController {
 	
 	/* 용품 상세보기 */
 	@RequestMapping(value = "/Shop_View")
-	public ModelAndView Shop_View(@RequestParam int page,int item_number) {
+	public ModelAndView Shop_View(@RequestParam int item_number) {
 		mav = new ModelAndView();
 		
 		mav = ssvc.Shop_View(item_number);
 		
-		mav.addObject("page", page);
+		return mav;
+	}
+	
+	/* 강아지 용품 목록*/
+	@RequestMapping(value = "/puffyItem")
+	public ModelAndView puffyItem(@RequestParam("item_kind") String item_kind) {
+		mav = new ModelAndView();
+		
+		System.out.println("■ item_kind : " + item_kind);
+		
+		mav = ssvc.puffyItem(item_kind);
+		
+		return mav;
+	}
+	
+	/* 강아지 용품 카테고리 검색*/
+	@RequestMapping(value = "/puffyItems")
+	public ModelAndView puffyItems(@ModelAttribute ShopDTO sdto) {
+		mav = new ModelAndView();
+		
+		System.out.println("■ item_kind : " + sdto.getItem_kind());
+		System.out.println("■ item_katagorie : " + sdto.getItem_katagorie());
+		
+		mav = ssvc.puffyItems(sdto);
+		
+		return mav;
+	}
+	
+	/* 용품 구매 */
+	@RequestMapping(value = "/ItemBuy")
+	public ModelAndView ItemBuy(@RequestParam("item_number") int item_number,@RequestParam("id") String id) {
+		mav = new ModelAndView();
+		
+		mav = ssvc.ItemBuy(item_number,id);
+		
+		
 		return mav;
 	}
 		

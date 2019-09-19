@@ -27,18 +27,28 @@ public class ShopDAO {
 		return sql.insert("Shop.shop_images",idto);
 	}
 	/* 용품 목록 */
-	public List<ShopDTO> Shop_List(PageDTO pageDTO) {
-		return sql.selectList("Shop.shop_List",pageDTO);
+	public List<ShopDTO> Shop_List() {
+		return sql.selectList("Shop.shop_List");
 	}
 	/* 용품 목록 갯수 */
 	public int listCount() {
 		return sql.selectOne("Shop.listCount");
 	}
+	/* 용품 상세 보기 */
 	public ShopDTO Shop_View(int item_number) {
 		return sql.selectOne("Shop.shop_View", item_number);
 	}
+	/* 다중파일 */
 	public List<String> MultyImg(int item_number) {
 		return sql.selectList("Shop.multyImg",item_number);
+	}
+	/* 강아지 용품 목록 */
+	public List<ShopDTO> puffyItem(String item_kind) {
+		return sql.selectList("Shop.puffyItem",item_kind);
+	}
+	/* 강아지 카테고리 검색 */
+	public List<ShopDTO> puffyItems(ShopDTO sdto) {
+		return sql.selectList("Shop.puffyItems",sdto);
 	}
 
 	

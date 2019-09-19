@@ -32,4 +32,8 @@
 	<select id="select_id" parameterType="member" resultType="String" >
 	SELECT ID FROM MEMBER WHERE NAME=#{name} AND PHONE=#{phone}
 	</select>
+	
+	<select id="memberView" parameterType="String" resultType="member">
+	SELECT * FROM MEMBER WHERE ID=#{id}
+	</select>
 </mapper>

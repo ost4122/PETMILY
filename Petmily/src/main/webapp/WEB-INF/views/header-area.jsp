@@ -145,15 +145,15 @@
 										<ul class="dropdown">
 											<li><a href="#">사료</a>
 												<ul class="dropdown">
-													<li><a href="#">강아지 사료</a></li>
-													<li><a href="#">고양이 사료</a></li>
 													<li><a href="#">파충류 사료</a></li>
 												</ul></li>
-											<li><a href="Item_puffy">강아지 용품</a>
+											<li><a href="puffyItem?item_kind=강아지 용품">강아지 용품</a>
 												<ul class="dropdown">
-													<li><a href="#">강아지 장난감</a></li>
-													<li><a href="#">강아지 미용용품</a></li>
-													<li><a href="#">강아지 옷/잡화</a></li>
+													<li><a href="puffyItems?item_kind=강아지 용품&item_katagorie=장난감">강아지 장난감</a></li>
+													<li><a href="puffyItems?item_kind=강아지 용품&item_katagorie=미용">강아지 미용용품</a></li>
+													<li><a href="puffyItems?item_kind=강아지 용품&item_katagorie=옷/잡화">강아지 옷/잡화</a></li>
+													<li><a href="puffyItems?item_kind=강아지 용품&item_katagorie=사료">강아지 사료</a></li>
+													<li><a href="puffyItems?item_kind=강아지 용품&item_katagorie=기타">기타</a></li>
 												</ul></li>
 
 											<li><a href="Item_cat">고양이 용품</a>
@@ -161,6 +161,7 @@
 													<li><a href="#">고양이 장난감</a></li>
 													<li><a href="#">고양이 미용용품</a></li>
 													<li><a href="#">고양이 옷/잡화</a></li>
+													<li><a href="#">고양이 사료</a></li>
 												</ul></li>
 
 											<li><a href="#">파충류 용품</a>

@@ -12,8 +12,8 @@
 <%@include file="header-area.jsp" %>
 
 	<c:forEach items="${ItemList}" var="ItemList">
-		<div class="catagory-title" style="display:inline-block;">
-		<a href="Shop_View?item_number=${ItemList.item_number}&page=${paging.page}">
+		<div class="catagory-title" style="display:inline-block; text-align:center;">
+		<a href="Shop_View?item_number=${ItemList.item_number}">
 	<table border='1'>
 		<tr><td><img src="${pageContext.request.contextPath}/resources/shopIMG/${ItemList.item_Profile}" width="300px" height="200px"/></td></tr>
 		<tr><td>${ItemList.item_name}<strong style="color:red;">[${ItemList.item_reviewCount}]</strong> </td></tr>
@@ -27,7 +27,7 @@
 	</c:forEach>
 <hr>	
 <!-- 페이징 처리 -->
-<c:if test="${paging.page<=1}">
+<%-- <c:if test="${paging.page<=1}">
 	[이전]&nbsp;
 </c:if>
 <c:if test="${paging.page>1}">
@@ -50,7 +50,7 @@
 </c:if>
 <c:if test="${paging.page<paging.maxPage}">
 <a href="Shop_List?page=${paging.page+1}">[다음]</a>
-</c:if>
+</c:if> --%>
 
 <%@include file="footer-area.jsp" %>
 

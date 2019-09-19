@@ -22,14 +22,14 @@
 	</selectKey>
 </insert>
 
-<!-- 글 갯수 -->
+<!-- 용품 갯수 -->
  <select id ="listCount"  resultType="int">
 	SELECT COUNT(*) FROM PAGING
  </select>
  
- <!-- 글 목록 -->
+ <!-- 용품 목록 -->
  <select id="shop_List" parameterType="pageDTO" resultType="shop">
- 	SELECT PAGING.*, PAGING.RN FROM PAGING WHERE PAGING.RN BETWEEN #{startRow} AND #{endRow}
+ 	SELECT * FROM ITEM_SHOPPING
  </select>
  
  <!-- 글 상세보기 -->
@@ -40,6 +40,16 @@
  <!-- 다중파일 가져오기 -->
  <select id="multyImg" parameterType="int" resultType="imgDTO">
  	SELECT multiImg FROM itemImages WHERE ITEM_NUMBER = #{item_number}
+ </select>
+ 
+  <!-- 강아지 용품 목록 -->
+ <select id="puffyItem" resultType="shop" parameterType="String">
+ 	Select * from item_shopping where item_kind=#{item_kind}
+ </select>
+ 
+   <!-- 강아지 카테고리 검색  -->
+ <select id="puffyItems" resultType="shop" parameterType="shop">
+ 	Select * from item_shopping where item_kind=#{item_kind} and item_katagorie=#{item_katagorie}
  </select>
  
  	
