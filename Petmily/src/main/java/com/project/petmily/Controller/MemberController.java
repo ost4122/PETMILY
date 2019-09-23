@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
-import com.project.petmily.DTO.MemberDTO;
+import com.project.petmily.DTO.Member_DTO;
 import com.project.petmily.Service.MemberService;
 @Controller
 public class MemberController {
@@ -58,7 +58,7 @@ public class MemberController {
 	}
 	//ȸ������ �ϰ���
 	@RequestMapping(value="/memberJoin",method=RequestMethod.POST)
-	public ModelAndView memberJoin(@ModelAttribute MemberDTO memberDTO) {
+	public ModelAndView memberJoin(@ModelAttribute Member_DTO memberDTO) {
 		//ModelAndView ��ü�� �����Ѵ�.
 		mav=new ModelAndView();
 		
@@ -67,7 +67,7 @@ public class MemberController {
 		return mav;
 	}
 	@RequestMapping(value="/JoinFile",method=RequestMethod.POST)
-	public ModelAndView JoinFile(@ModelAttribute MemberDTO memberDTO) throws Exception ,IllegalStateException, IOException {
+	public ModelAndView JoinFile(@ModelAttribute Member_DTO memberDTO) throws Exception ,IllegalStateException, IOException {
 		mav=new ModelAndView();
 	MultipartFile joinFile = memberDTO.getJoinFile();
 	String fileName = joinFile.getOriginalFilename();
@@ -87,12 +87,12 @@ public class MemberController {
 	}
 	// ȸ�� ����
 	@RequestMapping(value = "/approval_member.do", method = RequestMethod.POST)
-	public void approval_member(@ModelAttribute MemberDTO memberDTO, HttpServletResponse response) throws Exception{
+	public void approval_member(@ModelAttribute Member_DTO memberDTO, HttpServletResponse response) throws Exception{
 	memberService.approval_member(memberDTO, response);
 			}
 
 	@RequestMapping(value="/memberlogin",method=RequestMethod.POST)
-	public ModelAndView memberLogin(@ModelAttribute MemberDTO memberDTO,HttpServletResponse response) throws IOException {
+	public ModelAndView memberLogin(@ModelAttribute Member_DTO memberDTO,HttpServletResponse response) throws IOException {
 		
 		//ModelAndView ��ü�� �����Ѵ�.
 		mav=new ModelAndView();
@@ -127,8 +127,8 @@ public class MemberController {
 		return mav;
 	}
 	@RequestMapping(value="/memberListAjax",method=RequestMethod.GET)
-	public @ResponseBody List<MemberDTO> memberListAjax(){
-		List<MemberDTO> memberList =memberService.memberListAjax();
+	public @ResponseBody List<Member_DTO> memberListAjax(){
+		List<Member_DTO> memberList =memberService.memberListAjax();
 		return memberList;
 	
 	}
@@ -149,7 +149,7 @@ public class MemberController {
 		return mav;
 	}
 	@RequestMapping(value="/memberModify2",method=RequestMethod.POST)
-	public String memberModify2(@ModelAttribute MemberDTO memberDTO,HttpServletResponse response) throws IllegalStateException, IOException{
+	public String memberModify2(@ModelAttribute Member_DTO memberDTO,HttpServletResponse response) throws IllegalStateException, IOException{
 		
 		mav=new ModelAndView();
 		MultipartFile joinFile = memberDTO.getJoinFile();
@@ -179,7 +179,7 @@ public class MemberController {
 			
 			// ��й�ȣ ã��
 			@RequestMapping(value = "/find_pw.do")
-			public void find_pw(@ModelAttribute MemberDTO memberDTO, HttpServletResponse response, @RequestParam("email_2") String email_2) throws Exception{
+			public void find_pw(@ModelAttribute Member_DTO memberDTO, HttpServletResponse response, @RequestParam("email_2") String email_2) throws Exception{
 				String email_1 = memberDTO.getEmail_1();
 				String email_3 = "@";
 				String email=email_1 +email_3+email_2;
@@ -194,7 +194,7 @@ public class MemberController {
 			
 			// ���̵� ã��
 			@RequestMapping(value = "/find_id.do")
-			public void find_id(@ModelAttribute MemberDTO memberDTO, HttpServletResponse response,@RequestParam("email_2") String email_2) throws Exception{
+			public void find_id(@ModelAttribute Member_DTO memberDTO, HttpServletResponse response,@RequestParam("email_2") String email_2) throws Exception{
 				String email_1 = memberDTO.getEmail_1();
 				String email_3 = "@";
 				String email=email_1 +email_3+email_2;

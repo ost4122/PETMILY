@@ -30,16 +30,18 @@
   <script>
     function buy(){
     	
-    	var paymentOption = document.querySelector('input[name="paymentOption"]:checked').value;
-    	
+    	if(document.querySelector('input[name="paymentOption"]:checked').value == "KakaoPay"){
+    		code = 'imp81171428';
+    	}else{
+    		code = null;
+    	}
     	
     	var itemName = document.getElementById("item_name").value
     	var totalPrice = document.getElementById("totalPrice").value
     	
-    	if(paymentOption=="KakaoPay"){
     		
         var IMP = window.IMP; // 생략가능
-        IMP.init('imp81171428'); // 'iamport' 대신 부여받은 "가맹점 식별코드"를 사용
+        IMP.init(code); // 'iamport' 대신 부여받은 "가맹점 식별코드"를 사용
         var msg;
         
         IMP.request_pay({
@@ -80,22 +82,20 @@
                     }
                 });
                 //성공시 이동할 페이지
-                location.href='goHome';
+                Delivery.submit();
             } else {
                 msg = '결제에 실패하였습니다.';
                 msg += '에러내용 : ' + rsp.error_msg;
                 //실패시 이동할 페이지
-                location.href="<%=request.getContextPath()%>/order/payFail";
+                history.go(-1);
                 alert(msg);
             }
         });
-    	}
     }
     </script>
 
 
 <%@include file="header-area.jsp" %>
-<form action="itemBuy" method="post">
 <h1>주문/결제</h1><hr>
 
 <h3>구매자 정보</h3>
@@ -106,12 +106,14 @@
 </table>
 
 <h3>배송지 정보</h3>
+<form action="Delivery" method="post" name="Delivery">
+
 <table border="1">
 <tr><td><strong>이름</strong></td><td>${member.name}</td></tr>
-<tr><td><strong>배송주소</strong></td><td>${member.address_a}${member.address_b}${member.address_c}</td></tr>
+<tr><td><strong>배송주소</strong></td><td>${member.address}</td></tr>
 <tr><td><strong>연락처</strong></td><td>${member.phone}</td></tr>
 <tr><td><strong>배송 요청사항</strong></td>
-						<td><select name="request">
+						<td><select name="deliveryRequest">
 									<option value="문앞">문앞</option>				
 									<option value="직접 받고 부재 시 문 앞">직접 받고 부재 시 문 앞</option>				
 									<option value="경비실">경비실</option>				
@@ -119,10 +121,10 @@
 </table>
 
 <h3>결제 정보</h3>
-<input type="hidden" id="item_name" value=${item.item_name}/>
-<input type="hidden" id="totalPrice" value=${totalPrice}/>
+<input type = "hidden" value="${totalPrice}" id="totalPrice"/>
 
 <table border="1">
+
 <tr><td><strong>상품</strong></td><td><img src="${pageContext.request.contextPath}/resources/shopIMG/${item.item_Profile}" width="200px" height="100px"/></td></tr>
 <tr><td><strong>가격</strong></td><td><input type="hidden" id="Itemprice" value=${item.item_price}>${item.item_price}원</td></tr>
 <tr><td><strong>배송비</strong></td><td><input type="hidden" id="delivery" value=20000>20000원</td></tr>
@@ -132,7 +134,20 @@
 									   <input type="radio" name="paymentOption" value="KakaoPay" required>카카오페이</td></tr>
 </table>
 
+<input type = "hidden" name = "id" value = "${member.id }"/>
+<input type = "hidden" name = "name" value = "${member.name }"/>
+<input type = "hidden" name = "email" value = "${member.email }"/>
+<input type = "hidden" name = "address" value = "${member.address }"/>
+<input type = "hidden" name = "phone" value = "${member.phone }"/>
+<input type = "hidden" name = "item_name" value="${item.item_name}" id="item_name" />
+<input type = "hidden" name = "item_number" value="${item.item_number}"  />
+<input type = "hidden" name = "deliveryPrice" value=20000 />
+<input type = "hidden" name = "item_price" value="${item.item_price }" />
+<input type = "hidden" name = "item_profile" value="${item.item_Profile }" />
+
+
 </form>
+
 <button id="btn"onclick="buy();">결제하기</button>
 
 <%@include file="footer-area.jsp" %>

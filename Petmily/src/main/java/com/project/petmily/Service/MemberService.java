@@ -13,7 +13,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.project.petmily.DAO.MemberDAO;
-import com.project.petmily.DTO.MemberDTO;
+import com.project.petmily.DTO.Member_DTO;
 @Service
 public class MemberService {
 	
@@ -29,7 +29,7 @@ public class MemberService {
    //  private BCryptPasswordEncoder passEncoder;
 	 
 	
-	public ModelAndView memberJoin(MemberDTO memberDTO) {
+	public ModelAndView memberJoin(Member_DTO memberDTO) {
 		mav=new ModelAndView();
 		int JoinResult=memberDAO.memberJoin(memberDTO);
 		if(JoinResult>0) {
@@ -41,7 +41,7 @@ public class MemberService {
 	}
 	
 	//회원가입시 이메일 인증 
-	public ModelAndView send_mail(MemberDTO memberDTO) throws Exception{
+	public ModelAndView send_mail(Member_DTO memberDTO) throws Exception{
 			//	int mailz = memberDAO.approval_member(memberDTO);
 				// Mail Server 설정
 				String charSet = "UTF-8";
@@ -92,7 +92,7 @@ public class MemberService {
 				return mav;
 			}
 			// 회원 인증
-				public void approval_member(MemberDTO memberDTO, HttpServletResponse response) throws Exception {
+				public void approval_member(Member_DTO memberDTO, HttpServletResponse response) throws Exception {
 					response.setContentType("text/html;charset=utf-8");
 					PrintWriter out = response.getWriter();
 					if (memberDAO.approval_member(memberDTO) == 0) { // 이메일 인증에 실패하였을 경우
@@ -110,11 +110,11 @@ public class MemberService {
 					}
 				}
 
-	public ModelAndView memberLogin(MemberDTO memberDTO,HttpServletResponse response) throws IOException {
+	public ModelAndView memberLogin(Member_DTO memberDTO,HttpServletResponse response) throws IOException {
 		response.setContentType("test/html; charset=UTF-8");
 		PrintWriter out = response.getWriter();
 		mav=new ModelAndView();
-		MemberDTO LoginResult=memberDAO.memberLogin(memberDTO);
+		Member_DTO LoginResult=memberDAO.memberLogin(memberDTO);
 		if(LoginResult!=null) {
 			session.setAttribute("sessionId", LoginResult.getId());
 			mav.addObject("loginMember",LoginResult);
@@ -149,7 +149,7 @@ public class MemberService {
 		return resultMsg;
 	}
 
-	public ModelAndView joinFile(MemberDTO memberDTO) {
+	public ModelAndView joinFile(Member_DTO memberDTO) {
 		mav = new ModelAndView();
 		int joinResult=memberDAO.joinFile(memberDTO);
 		if(joinResult>0) {
@@ -159,18 +159,18 @@ public class MemberService {
 	}
 	public ModelAndView memberList()  {
 		mav=new ModelAndView();
-		List<MemberDTO> listResult=memberDAO.memberList();
+		List<Member_DTO> listResult=memberDAO.memberList();
 			mav.addObject("memberList",listResult);
 			mav.setViewName("MemberList");
 			return mav;
 	}
-	public List<MemberDTO> memberListAjax() {
-		List<MemberDTO> memberList = memberDAO.memberList();
+	public List<Member_DTO> memberListAjax() {
+		List<Member_DTO> memberList = memberDAO.memberList();
 		return memberList;
 	}
 	public ModelAndView memberView(String id)  {
 		mav=new ModelAndView();
-		MemberDTO memberView= memberDAO.memberView(id);
+		Member_DTO memberView= memberDAO.memberView(id);
 			mav.addObject("memberView",memberView);
 			mav.setViewName("MemberView");
 			return mav;
@@ -178,7 +178,7 @@ public class MemberService {
 
 	public ModelAndView memberModify(String id) {
 		mav=new ModelAndView();
-		MemberDTO Result=memberDAO.memberView(id);
+		Member_DTO Result=memberDAO.memberView(id);
 		if(Result!=null) {
 			mav.addObject("memberModify",Result);
 			mav.setViewName("MemberModify");
@@ -188,7 +188,7 @@ public class MemberService {
 		return mav;
 	}
 
-	public ModelAndView memberModify2(MemberDTO memberDTO) {
+	public ModelAndView memberModify2(Member_DTO memberDTO) {
 		mav=new ModelAndView();
 		memberDAO.MemberModify(memberDTO);
 		
@@ -210,7 +210,7 @@ public class MemberService {
 
 	//비밀번호찾기인증메일 입력하기 
 				
-				public void pwFind(MemberDTO memberDTO) throws Exception {
+				public void pwFind(Member_DTO memberDTO) throws Exception {
 					
 					
 					String charSet = "UTF-8";
@@ -265,7 +265,7 @@ public class MemberService {
 				
 				// 비밀번호 찾기
 				
-				public void find_pw(MemberDTO memberDTO,HttpServletResponse response) throws Exception {
+				public void find_pw(Member_DTO memberDTO,HttpServletResponse response) throws Exception {
 					mav = new ModelAndView();
 					response.setContentType("text/html;charset=utf-8");
 					PrintWriter out = response.getWriter();
@@ -289,7 +289,7 @@ public class MemberService {
 						out.close();
 					}
 				}
-				public void idFind(MemberDTO memberDTO ,HttpServletResponse response) throws Exception {
+				public void idFind(Member_DTO memberDTO ,HttpServletResponse response) throws Exception {
 					String id = memberDAO.select_id(memberDTO);
 					String charSet = "UTF-8";
 					String hostSMTP = "smtp.naver.com";		
@@ -332,7 +332,7 @@ public class MemberService {
 						}
 				}
 					//아이디 찾기
-					public void find_id(MemberDTO memberDTO,HttpServletResponse response) throws Exception {
+					public void find_id(Member_DTO memberDTO,HttpServletResponse response) throws Exception {
 						mav = new ModelAndView();
 						response.setContentType("text/html;charset=utf-8");
 						PrintWriter out = response.getWriter();

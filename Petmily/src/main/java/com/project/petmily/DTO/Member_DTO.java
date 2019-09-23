@@ -5,7 +5,7 @@ import org.springframework.web.multipart.MultipartFile;
 import lombok.Data;
 
 @Data
-public class MemberDTO {
+public class Member_DTO {
 	
 	private String id;
 	private String password;
@@ -24,5 +24,8 @@ public class MemberDTO {
 	private MultipartFile joinFile;
 	private String profileimage;
 	private String appoval_status; //���̵� ���� ���� 
+	
+	private String address;
+	
 	
 }

@@ -8,17 +8,18 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.project.petmily.DTO.MemberDTO;
+import com.project.petmily.DTO.Delivery_DTO;
+import com.project.petmily.DTO.Member_DTO;
 @Repository
 public class MemberDAO {
 	
 	@Autowired
 	private SqlSessionTemplate sql;
 	
-	public int memberJoin(MemberDTO memberDTO) {
+	public int memberJoin(Member_DTO memberDTO) {
 		return sql.insert("Member.memberJoin",memberDTO);
 	}
-	public MemberDTO memberLogin(MemberDTO memberDTO) {
+	public Member_DTO memberLogin(Member_DTO memberDTO) {
 		return sql.selectOne("Member.memberlogin",memberDTO);
 	}
 	public String idOverlap(String id) {
@@ -27,16 +28,16 @@ public class MemberDAO {
 	public String nameOverlap(String name) {
 		return sql.selectOne("Member.nameOverlap",name);
 	}
-	public int joinFile(MemberDTO memberDTO) {
+	public int joinFile(Member_DTO memberDTO) {
 		return sql.insert("Member.joinFile",memberDTO);
 	}
-	public List<MemberDTO> memberList() {
+	public List<Member_DTO> memberList() {
 		return sql.selectList("Member.memberList");
 	}
-	public  MemberDTO memberView(String id) {
+	public  Member_DTO memberView(String id) {
 		return sql.selectOne("Member.memberView",id);
 	}
-	public int MemberModify(MemberDTO memberDTO) {
+	public int MemberModify(Member_DTO memberDTO) {
 		return sql.update("Member.memberModify",memberDTO);		
 	}
 	public int memberDelete(String id) {
@@ -45,18 +46,18 @@ public class MemberDAO {
 	public void logout(HttpSession session) {
 		
 	}
-	// ÀÌ¸ÞÀÏ ÀÎÁõ
-		public int approval_member(MemberDTO memberDTO) throws Exception{
+	// ï¿½Ì¸ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+		public int approval_member(Member_DTO memberDTO) throws Exception{
 		return sql.update("Member.approval_member", memberDTO);
 		}	
-		// ºñ¹Ð¹øÈ£ º¯°æ
+		// ï¿½ï¿½Ð¹ï¿½È£ ï¿½ï¿½ï¿½ï¿½
 		
-	public int update_pw(MemberDTO memberDTO) throws Exception{
+	public int update_pw(Member_DTO memberDTO) throws Exception{
 		return sql.update("Member.update_pw", memberDTO);
 				}
-	//¾ÆÀÌµð Ã£±â
-	public String select_id(MemberDTO memberDTO) {
+	//ï¿½ï¿½ï¿½Ìµï¿½ Ã£ï¿½ï¿½
+	public String select_id(Member_DTO memberDTO) {
 		return sql.selectOne("Member.select_id", memberDTO);
-	}	
+	}
 
 }

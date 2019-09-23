@@ -13,10 +13,11 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.project.petmily.DAO.MemberDAO;
 import com.project.petmily.DAO.ShopDAO;
-import com.project.petmily.DTO.ImagesDTO;
-import com.project.petmily.DTO.MemberDTO;
+import com.project.petmily.DTO.Delivery_DTO;
+import com.project.petmily.DTO.Images_DTO;
+import com.project.petmily.DTO.Member_DTO;
 import com.project.petmily.DTO.PageDTO;
-import com.project.petmily.DTO.ShopDTO;
+import com.project.petmily.DTO.Shop_DTO;
 
 @Service
 public class ShopService {
@@ -27,7 +28,7 @@ public class ShopService {
 	private MemberDAO mdao;
 
 	/* 용품 등록 */
-	public ModelAndView Shop_Input(ImagesDTO idto, ShopDTO sdto, HttpServletResponse response) throws IOException {
+	public ModelAndView Shop_Input(Images_DTO idto, Shop_DTO sdto, HttpServletResponse response) throws IOException {
 
 		mav = new ModelAndView();
 
@@ -100,7 +101,7 @@ public class ShopService {
 		pageDTO.setMaxPage(maxPage);
 		*/
 		
-		List<ShopDTO> itemList = sdao.Shop_List();
+		List<Shop_DTO> itemList = sdao.Shop_List();
 		mav.setViewName("PetShop");
 		mav.addObject("ItemList", itemList );
 		//mav.addObject("paging",pageDTO);
@@ -113,7 +114,7 @@ public class ShopService {
 	public ModelAndView Shop_View(int item_number) {
 		mav = new ModelAndView();
 		
-		ShopDTO result = sdao.Shop_View(item_number);
+		Shop_DTO result = sdao.Shop_View(item_number);
 		List<String> multyImg = sdao.MultyImg(item_number);
 		mav.addObject("multyImg", multyImg);
 		mav.addObject("Item", result);
@@ -125,7 +126,7 @@ public class ShopService {
 	public ModelAndView puffyItem(String item_kind) {
 		mav = new ModelAndView();
 		
-		List<ShopDTO> result = sdao.puffyItem(item_kind);
+		List<Shop_DTO> result = sdao.puffyItem(item_kind);
 		
 		//System.out.println("★ puffyItem:" + result.get(0).getItem_name());
 		
@@ -135,11 +136,11 @@ public class ShopService {
 	}
 
 	/* 강아지 용품 카테고리 검색*/
-	public ModelAndView puffyItems(ShopDTO sdto) {
+	public ModelAndView puffyItems(Shop_DTO sdto) {
 		
 		mav = new ModelAndView();
 		
-		List<ShopDTO> result = sdao.puffyItems(sdto);
+		List<Shop_DTO> result = sdao.puffyItems(sdto);
 		
 		mav.addObject("ItemList", result);
 		mav.setViewName("PetShop");
@@ -152,9 +153,14 @@ public class ShopService {
 		
 		int delivery = 20000; // 배송비
 		
-		MemberDTO member = mdao.memberView(id);
-		ShopDTO item = sdao.Shop_View(item_number);
+		Member_DTO member = mdao.memberView(id);
+		Shop_DTO item = sdao.Shop_View(item_number);
 		int totalPrice = delivery + item.getItem_price();
+		
+		String address = 
+		member.getAddress_a() + member.getAddress_b() + member.getAddress_c();
+		
+		member.setAddress(address);
 		
 		mav.addObject("member", member);
 		mav.addObject("item", item);
@@ -163,6 +169,25 @@ public class ShopService {
 		
 		mav.setViewName("ItemBuy");
 		
+		return mav;
+	}
+
+	/* 배송 신청 */
+	public ModelAndView delivery(Delivery_DTO ddto) {
+		mav = new ModelAndView();
+		
+		int result = sdao.delivery(ddto);
+		
+		int totalPrice = ddto.getItem_price()+20000;
+		
+		if(result > 0) {
+			sdao.soldCount(ddto.getItem_number());
+			mav.addObject("totalPrice",totalPrice);
+			mav.addObject("buy",ddto );
+			mav.setViewName("buySuccess");
+		}else {
+			
+		}
 		return mav;
 	}
 

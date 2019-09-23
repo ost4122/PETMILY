@@ -7,7 +7,6 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.project.petmily.DTO.PageDTO;
 import com.project.petmily.DTO.Paging_DTO;
 import com.project.petmily.DTO.Pet_DTO;
 
@@ -30,7 +29,7 @@ public class Pet_DAO {
 	}
 
 	// 강아지리스트  페이징 처리 
-	public List<PageDTO> Pet_Dog_allList_Paging(Paging_DTO paging) {
+	public List<Paging_DTO> Pet_Dog_allList_Paging(Paging_DTO paging) {
 		
 		return sql.selectList("Pet.Pet_Dog_allList_Paging",paging); 
 	}

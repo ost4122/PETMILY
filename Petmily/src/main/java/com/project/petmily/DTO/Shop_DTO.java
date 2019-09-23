@@ -7,7 +7,7 @@ import org.springframework.web.multipart.MultipartFile;
 import lombok.Data;
 
 @Data
-public class ShopDTO {
+public class Shop_DTO {
 
 	private int item_number;			/* 용품 번호  */
 	private String item_name;			/* 용품 이름  */

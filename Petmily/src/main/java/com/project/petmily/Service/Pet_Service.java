@@ -62,7 +62,7 @@ public class Pet_Service {
 	        //List<Boarddto> boardList = boardDAO.boardListPaging(paging);로 해도된다.
 	        
 	        
-	        List<PageDTO> Pet_Dog_allList = pet_DAO.Pet_Dog_allList_Paging(paging);
+	        List<Paging_DTO> Pet_Dog_allList = pet_DAO.Pet_Dog_allList_Paging(paging);
 	    
 	    	int maxPage =(int)((double)Pet_Dog_allList_Count/limit +0.9);
 	    	int startPage = (((int)((double)page/10+0.9)) - 1 )* 10 + 1;

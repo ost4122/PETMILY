@@ -10,6 +10,7 @@ public class PageDTO {
 	private int startPage;
 	private int endPage;
 	private int listCount;
+	private int boardCount;
 	private int limit;
 	private int startRow;
 	private int endRow;

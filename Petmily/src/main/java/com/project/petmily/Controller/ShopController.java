@@ -21,8 +21,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.project.petmily.DTO.ImagesDTO;
-import com.project.petmily.DTO.ShopDTO;
+import com.project.petmily.DTO.Delivery_DTO;
+import com.project.petmily.DTO.Images_DTO;
+import com.project.petmily.DTO.Shop_DTO;
 import com.project.petmily.Service.ShopService;
 
 import oracle.sql.DATE;
@@ -43,10 +44,10 @@ public class ShopController {
 	
 	// 용품 등록 
 	@RequestMapping(value = "/Shop_Input")
-	public ModelAndView Shop_Input(@ModelAttribute ShopDTO sdto,HttpServletResponse response) 
+	public ModelAndView Shop_Input(@ModelAttribute Shop_DTO sdto,HttpServletResponse response) 
 			throws IllegalStateException, IOException {
 		
-		ImagesDTO idto = new ImagesDTO();
+		Images_DTO idto = new Images_DTO();
 		
 		
 		mav = new ModelAndView();
@@ -141,7 +142,7 @@ public class ShopController {
 	
 	/* 강아지 용품 카테고리 검색*/
 	@RequestMapping(value = "/puffyItems")
-	public ModelAndView puffyItems(@ModelAttribute ShopDTO sdto) {
+	public ModelAndView puffyItems(@ModelAttribute Shop_DTO sdto) {
 		mav = new ModelAndView();
 		
 		System.out.println("■ item_kind : " + sdto.getItem_kind());
@@ -162,7 +163,21 @@ public class ShopController {
 		
 		return mav;
 	}
+	
+	
+	/* 배송 신청  */
+	@RequestMapping(value = "/Delivery" )
+	public ModelAndView delivery(@ModelAttribute Delivery_DTO Ddto) throws IllegalStateException, IOException {
+		mav = new ModelAndView();
 		
+		
+		mav = ssvc.delivery(Ddto);
+		
+		
+		return mav;
+	
+		
+	}
 		
 		
 		
