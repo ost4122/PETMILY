@@ -53,9 +53,10 @@ public class ShopDAO {
 	}
 	
 	/* 배송 신청 */
-	public int delivery(Delivery_DTO ddto) {
+	public int Item_Delivery(Delivery_DTO ddto) {
 		return sql.insert("Shop.delivery",ddto);
 	}
+	/* 판매순 +1 */
 	public void soldCount(int item_number) {
 		 sql.update("soldCount", item_number);
 	}

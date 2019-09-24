@@ -173,10 +173,10 @@ public class ShopService {
 	}
 
 	/* 배송 신청 */
-	public ModelAndView delivery(Delivery_DTO ddto) {
+	public ModelAndView Item_Delivery(Delivery_DTO ddto) {
 		mav = new ModelAndView();
 		
-		int result = sdao.delivery(ddto);
+		int result = sdao.Item_Delivery(ddto);
 		
 		int totalPrice = ddto.getItem_price()+20000;
 		
@@ -190,5 +190,8 @@ public class ShopService {
 		}
 		return mav;
 	}
+	
+	// 2019 - 09 - 24 
+
 
 }

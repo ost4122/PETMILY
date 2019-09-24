@@ -39,7 +39,7 @@
    			alert("로그인 후 이용 가능합니다 !");
    			
    		}else{
-   			location.href="ItemBuy?item_number=${Item.item_number}&id=${sessionId}";
+   			location.href="Item_Buy?item_number=${Item.item_number}&id=${sessionId}";
    		}
    		
    	}

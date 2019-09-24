@@ -154,8 +154,8 @@ public class ShopController {
 	}
 	
 	/* 용품 구매 */
-	@RequestMapping(value = "/ItemBuy")
-	public ModelAndView ItemBuy(@RequestParam("item_number") int item_number,@RequestParam("id") String id) {
+	@RequestMapping(value = "/Item_Buy")
+	public ModelAndView Item_Buy(@RequestParam("item_number") int item_number,@RequestParam("id") String id) {
 		mav = new ModelAndView();
 		
 		mav = ssvc.ItemBuy(item_number,id);
@@ -166,18 +166,19 @@ public class ShopController {
 	
 	
 	/* 배송 신청  */
-	@RequestMapping(value = "/Delivery" )
-	public ModelAndView delivery(@ModelAttribute Delivery_DTO Ddto) throws IllegalStateException, IOException {
+	@RequestMapping(value = "/Item_Delivery" )
+	public ModelAndView Item_Delivery(@ModelAttribute Delivery_DTO Ddto) throws IllegalStateException, IOException {
 		mav = new ModelAndView();
 		
 		
-		mav = ssvc.delivery(Ddto);
+		mav = ssvc.Item_Delivery(Ddto);
 		
 		
 		return mav;
 	
 		
 	}
+	// 2019 - 09 - 24 
 		
 		
 		

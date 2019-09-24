@@ -106,7 +106,7 @@
 </table>
 
 <h3>배송지 정보</h3>
-<form action="Delivery" method="post" name="Delivery">
+<form action="Item_Delivery" method="post" name="Delivery">
 
 <table border="1">
 <tr><td><strong>이름</strong></td><td>${member.name}</td></tr>
