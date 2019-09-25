@@ -7,6 +7,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style>
+
 #ca{
 display:block;
 border: 8px solid #FF6464;
@@ -32,70 +33,32 @@ border-radius: 10px;
 margin : 30px;
 
 }
+
+.gmd{ 
+text-align:center;
+}
+
 </style>
 
 <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script>
-/* 좋아요 */
-function like_func(num){
- 
-console.log("pet_number값은 넘어가냐 ㅅㅂ"+pet_number);
-var pet_number = num;
-  $.ajax({
-	type: "GET",
-    url: "liketo",
-    data:{"pet_number" : pet_number},
-     dataType: "text",
-    success: function(data){
-    	var output ="";
-    if(data =="1"){
-    	output += "<img src='"${pageContext.request.contextPath}+"/resources/petUploadFile/하투투.png'>";
-    	} else { 
-    	output += "<img src='"${pageContext.request.contextPath}+"/resources/petUploadFile/하투.JPG'>";
-    }      
-    $("#a").html(output);
-    },
-    error: function(){
-      alert("아주뭔가 잘못이야");
-    }
-  });
-}
 
-/* 분ㅇ양추천 취소 */
-function like_func2(num){
- console.log("pet_number값은 넘어가냐 ㅅㅂ"+pet_number);
- var pet_number = num;
-  $.ajax({
-	type: "GET",
-    url: "likecancle",
-    data:{"pet_number" : pet_number},
-     dataType: "text",
-    success: function(data){
-    	var output ="";
-    if(data =="0"){
-    	output += "<img src='"${pageContext.request.contextPath}+"/resources/petUploadFile/하투.JPG'>";
-    	} 
-    
-    if(data =="1"){
-    		output += "<img src='"${pageContext.request.contextPath}+"/resources/petUploadFile/하투투.png'>";
-    }      
-    $("#a").html(output);
-    },
-    error: function(){
-      alert("아주뭔가 잘못이야2");
-    }
-  });
-}
-function go(){
-	location.href="Pet_Dog_View?pet_number=${List.pet_number}&page=1";
-}
 
 </script>
 </head>
 <body>
+<jsp:include page="header-area.jsp" flush="true"></jsp:include>
+<br>
 
-<h2>미분양된 강아지 리스트all </h2>
+<div class="gmd">
+<h2>미분양된 강아지 리스트all </h2><br>
 
+<a href="">분양가격순정렬</a>
+<a href="">인기순</a>
+<a href="">최신순</a> <br><!-- 꼭해야하나  -->
+
+<a id="1" href="Pet_Dog_Big?page=1">대형견</a> <a id="2" href="Pet_Dog_Medium?page=1">중형견 </a><a id ="3" href="Pet_Dog_Small?page=1">소형견</a>
+</div>
 <c:forEach var="List" items="${Pet_Dog_allList}">
 
 <div id="ca">
@@ -114,5 +77,35 @@ ${List.pet_name}
 
 </c:forEach>
 
+<!-- 페이징 처리부분 -->
+<c:if test="${paging.page<=1}">
+&nbsp; 
+	[이전]&nbsp; 
+</c:if>
+<c:if test="${paging.page>1}">
+	<a href="Pet_Dog_List?page=${paging.page-1}">[이전]</a>&nbsp;
+</c:if>
+
+<c:forEach begin="${paging.startPage}" end="${paging.endPage}" var="i" step="1">
+	<c:choose>
+	
+		<c:when test="${i eq paging.page}">
+			${i}
+		</c:when>
+		<c:otherwise> 
+		<a href="Pet_Dog_List?page=${i}">${i}</a>
+		</c:otherwise>
+	</c:choose>
+</c:forEach>
+
+<c:if test="${paging.page>=paging.maxPage}">
+[다음]
+</c:if>
+<c:if test="${paging.page<paging.maxPage}">
+<a href="Pet_Dog_List?page=${paging.page+1}">[다음]</a>
+</c:if>
+
+<br>
+<%@include file="footer-area.jsp"%>
 </body>
 </html>

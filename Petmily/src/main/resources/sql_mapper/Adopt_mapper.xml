@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="Adopt">
+
+<!-- 분양 신청글 쓰기 처리 -->
+	<insert id="a_write" parameterType="adopt"
+		useGeneratedKeys="true" keyProperty="a_number">
+		INSERT INTO ADOPT VALUES(A_NUMBER_SEQ.NEXTVAL,
+		#{a_name},#{a_id},#{a_petnumber},#{a_petcategorie},#{a_petname},#{a_petprice},SYSDATE,0)
+		<selectKey keyProperty="a_number" resultType="int"
+			order="AFTER">
+			SELECT A_NUMBER_SEQ.CURRVAL FROM DUAL
+		</selectKey>
+	</insert>
+	
+	<!-- 분양 확인 -->
+	<update id="a_adoptConfirm" parameterType="int">
+		UPDATE ADOPT SET A_ADMINCONFIRM=A_ADMINCONFIRM+1 WHERE A_NUMBER=#{a_number}
+	</update>
+	
+	<!-- 게시판 목록(페이징) 
+	<select id="a_list" resultType="adopt"
+		parameterType="page1">
+		SELECT AVIEW.*, AVIEW.RN FROM AVIEW WHERE
+		AVIEW.RN
+		BETWEEN #{startRow} AND #{endRow} ORDER BY AVIEW.RN DESC
+	</select>-->
+	
+	<!-- 후기글 갯수 가져오는 쿼리
+	<select id="listCount" resultType="int">
+		SELECT COUNT(*) FROM AVIEW
+	</select> -->
+</mapper>

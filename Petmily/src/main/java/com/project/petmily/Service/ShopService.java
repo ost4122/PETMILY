@@ -16,7 +16,6 @@ import com.project.petmily.DAO.ShopDAO;
 import com.project.petmily.DTO.Delivery_DTO;
 import com.project.petmily.DTO.Images_DTO;
 import com.project.petmily.DTO.Member_DTO;
-import com.project.petmily.DTO.PageDTO;
 import com.project.petmily.DTO.Shop_DTO;
 
 @Service
@@ -193,5 +192,16 @@ public class ShopService {
 	
 	// 2019 - 09 - 24 
 
+	/* 구매 내역 */
+	public ModelAndView purchase(String id) {
+		mav = new ModelAndView();
+		
+		List<Delivery_DTO> result = sdao.purchase(id);
+		
+		mav.addObject("purchase", result);
+		mav.setViewName("Purchase");
+		
+		return mav;
+	}
 
 }

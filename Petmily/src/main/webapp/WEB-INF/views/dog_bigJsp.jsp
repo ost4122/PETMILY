@@ -7,109 +7,83 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style>
-#1{
+#ca{
+fdisplay:block;
 border: 8px solid #FF6464;
 border-radius: 10px;
-display:block;
 margin : 30px;
 clear : nono;
 -moz-border-radius: 7px;
 -khtml-border-radius: 7px;
 -webkit-border-radius: 7px;
 float : left;
-
 }
-#1:hover{
+#ca:hover{
+display:block;
+margin : 30px;
 float : left;
 clear : nono;
 border: 8px solid #800080;
-border-radius: 7px;
+border-radius: 10px;
 -moz-border-radius: 7px;
 -khtml-border-radius: 7px;
 -webkit-border-radius: 7px;
-display:block;
 margin : 30px;
+
 }
 
+.te{
 
+text-align:center;
+
+
+}
 
 </style>
+
 <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script>
-/* 좋아요 */
-function like_func(num){
- 
-console.log("pet_number값은 넘어가냐 ㅅㅂ"+pet_number);
-var pet_number = num;
-  $.ajax({
-	type: "GET",
-    url: "liketo",
-    data:{"pet_number" : pet_number},
-     dataType: "text",
-    success: function(data){
-    	var output ="";
-    if(data =="1"){
-    	output += "<img src='"${pageContext.request.contextPath}+"/resources/petUploadFile/하투투.png'>";
-    	} else { 
-    	output += "<img src='"${pageContext.request.contextPath}+"/resources/petUploadFile/하투.JPG'>";
-    }      
-    $("#a").html(output);
-    },
-    error: function(){
-      alert("아주뭔가 잘못이야");
-    }
-  });
-}
-
-/* 분ㅇ양추천 취소 */
-function like_func2(num){
- console.log("pet_number값은 넘어가냐 ㅅㅂ"+pet_number);
- var pet_number = num;
-  $.ajax({
-	type: "GET",
-    url: "likecancle",
-    data:{"pet_number" : pet_number},
-     dataType: "text",
-    success: function(data){
-    	var output ="";
-    if(data =="0"){
-    	output += "<img src='"${pageContext.request.contextPath}+"/resources/petUploadFile/하투.JPG'>";
-    	} 
-    
-    if(data =="1"){
-    		output += "<img src='"${pageContext.request.contextPath}+"/resources/petUploadFile/하투투.png'>";
-    }      
-    $("#a").html(output);
-    },
-    error: function(){
-      alert("아주뭔가 잘못이야2");
-    }
-  });
-}
 
 </script>
+
 </head>
 <body>
-<%@include file="header-area.jsp"%>
 
+<jsp:include page="header-area.jsp" flush="true"></jsp:include>
+
+
+<div class="te">
 <h2>대형견 리스트  </h2>
+<a href="Pet_name?pet_name=골든리트리버">골든리트리버</a>
+<a href="Pet_name?pet_name=그레이트데인">그레이트데인</a>
+<a href="Pet_name?pet_name=도베르만">도베르만</a>
+<a href="Pet_name?pet_name=그레이트피레니즈">그레이트피레니즈</a>
+<a href="Pet_name?pet_name=올드잉글리시쉽독">올드잉글리시쉽독</a>
+<a href="Pet_name?pet_name=시베리안허스키">시베리안허스키</a>
+<a href="Pet_name?pet_name=아이리쉬세터">아이리쉬세터</a>
+<a href="Pet_name?pet_name=포인터">포인터</a>
+<a href="Pet_name?pet_name=콜리">콜리</a>
+<a href="Pet_name?pet_name=아프간하운드">아프간하운드</a>
+</div>
 
 <c:forEach var="List" items="${Pet_Dog_Big}">
-<div id = "1">
-<a href="Pet_Dog_View?pet_number=${List.pet_number}"><img style="width:300px; height:400px;"src="${pageContext.request.contextPath}/resources/petUploadFile/${List.pet_profile}"></a>
+
+
+<a href="Pet_Dog_View?pet_number=${List.pet_number}&page=1"><img style="width:300px; height:400px;" src="${pageContext.request.contextPath}/resources/petUploadFile/${List.pet_profile}"></a><br>
 
 <c:choose>
 <c:when test="${(sessionScope.sessionHit eq '1')}">
-<a href="javascript:like_func2(${List.pet_number});"><img style="width:10px; height :20px;" src="${pageContext.request.contextPath}/resources/petUploadFile/하투투.png">${List.pet_hit}</a><br>
+<a href="javascript:like_func2(${List.pet_number});"><img style="width:30px; height :30px;" src="${pageContext.request.contextPath}/resources/petUploadFile/하투투.png">${List.pet_hit}</a><br>
 </c:when>
 <c:otherwise>
-<a href="javascript:like_func(${List.pet_number});"><img style="width : 10px; height :20px;" src="${pageContext.request.contextPath}/resources/petUploadFile/하투.JPG">${List.pet_hit}</a>
+<a href="javascript:like_func(${List.pet_number});"><img style="width : 30px; height :30px;" src="${pageContext.request.contextPath}/resources/petUploadFile/하투.JPG">${List.pet_hit}</a>
 </c:otherwise>
 </c:choose>
-
 ${List.pet_name}
-</div>
+
 </c:forEach>
+
+
 <%@include file="footer-area.jsp"%>
 </body>
 </html>

@@ -53,6 +53,21 @@ function fileInfo(f){
 		
 	
 	  }
+//이미지 정보들을 담을 배열
+function fileInfo2(f){
+	
+	var file = f.files; 
+	 var review_File = $("#pet_profile_file").val();
+	 for(var i=0; i<file.length; i++){
+  	var review_File =new FileReader(); 
+		review_File.onload = function(rst){
+			$('#img_box').append('<img src="' + rst.target.result + '">'+"<br>");
+			}
+		review_File.readAsDataURL(file[i]); 
+		}
+		
+	
+	  }
 
 
 </script>
@@ -65,6 +80,11 @@ text-align:center;
 text-align:center;
  display: none; 
  }
+ 
+ #dog__{
+ text-align:center;
+ 
+ }
 </style>
 
 
@@ -74,8 +94,9 @@ text-align:center;
 <h2>admin만 할수 있는 펫등록페이지 </h2>
 <form action="admin_pet_writ" method="post" enctype="multipart/form-data">
 
-
+<div id="dog__">
 펫 종류 : 
+
 <select name = "pet_kategorie" id ="pet_kategorie" onChange ="setVlues();">
 <option selected ="selected">==선택==</option>
 <option value="강아지">강아지</option>
@@ -188,11 +209,19 @@ text-align:center;
  style= "width:500px;" onchange="fileInfo(this)"><br>
  <div id="img_box"></div>
  </div>
+ 
+ <div style="text-align:center; margin:0 0 100px 0; background:whilt; line-height:60px;">
+  이미지 : <input type="file" name ="pet_img_file" id ="pet_img_file"
+ style= "width:500px;" onchange="fileInfo2(this)"><br>
+ <div id="img_box"></div>
+ </div>
+ 
  펫 소개 동영상링크를 넣으시오 
  <input type="text" name ="pet_trailer"><br>
- 펫 소개글 :<textarea rows="5" cols="30" name ="pet_contents" placeholder="댓글내용"></textarea><br>
+ 펫 소개글 :<textarea rows="5" cols="30" name ="pet_contents" placeholder="소개내용"></textarea><br>
 펫 접종 :  <input type="text" name ="pet_inoculation"><br>
   <input type="submit" value="작성하기"><br>
+  </div>
 </form>
 
 

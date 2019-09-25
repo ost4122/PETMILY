@@ -7,27 +7,27 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style>
-div{
+
+.supp{
+display:inline-block;
 border: 8px solid #FF6464;
 border-radius: 10px;
-display:block;
 margin : 30px;
 clear : nono;
 -moz-border-radius: 7px;
 -khtml-border-radius: 7px;
 -webkit-border-radius: 7px;
 float : left;
-
 }
-div:hover{
+.supp a:hover{
+display:block;
 float : left;
-clear : nono;
 border: 8px solid #800080;
 border-radius: 7px;
+clear : nono;
 -moz-border-radius: 7px;
 -khtml-border-radius: 7px;
 -webkit-border-radius: 7px;
-display:block;
 margin : 30px;
 }
 
@@ -91,10 +91,22 @@ function like_func2(num){
 </head>
 <body>
 <%@include file="header-area.jsp"%>
-<h2>중형견 리스트  </h2>
+<h2>소형견 리스트  </h2>
+<a href="Pet_name?pet_name=포메라니안">포메라니안</a>
+<a href="Pet_name?pet_name=치와와">치와와</a>
+<a href="Pet_name?pet_name=미니핀">미니핀</a>
+<a href="Pet_name?pet_name=파피용">파피용</a>
+<a href="Pet_name?pet_name=토이푸들">토이푸들</a>
+<a href="Pet_name?pet_name=닥스훈트">닥스훈트</a>
+<a href="Pet_name?pet_name=요크셔테리어">요크셔테리어</a>
+<a href="Pet_name?pet_name=말티즈">말티즈</a>
+<a href="Pet_name?pet_name=비숑프리제">비숑프리제</a>
+<a href="Pet_name?pet_name=슈나우저">슈나우저</a>
+<a href="Pet_name?pet_name=시츄">시츄</a>
+<a href="Pet_name?pet_name=아펜핀셔">아펜핀셔</a>
 
 <c:forEach var="List" items="${Pet_Dog_Small}">
-<div>
+<div class="supp">
 <a href="Pet_Dog_View?pet_number=${List.pet_number}&page=1"><img style="width:300px; height:400px;"src="${pageContext.request.contextPath}/resources/petUploadFile/${List.pet_profile}"></a><br>
 
 <c:choose>
@@ -109,6 +121,34 @@ function like_func2(num){
 ${List.pet_name}
 </div>
 </c:forEach>
+
+
+<c:if test="${paging.page<=1}">
+	[이전]&nbsp; 
+	
+</c:if>
+<c:if test="${paging.page>1}">
+	<a href="Pet_Dog_Small?page=${paging.page-1}&pet_number=${view.pet_number}">[이전]</a>
+</c:if>
+
+<c:forEach begin="${paging.startPage}" end="${paging.endPage}" var="i" step="1">
+	<c:choose>
+	
+		<c:when test="${i eq paging.page}">
+			${i}
+		</c:when>
+		<c:otherwise> 
+		<a href="Pet_Dog_Small?page=${i}&pet_number=${view.pet_number}">${i}</a>
+		</c:otherwise>
+	</c:choose>
+</c:forEach>
+
+<c:if test="${paging.page>=paging.maxPage}">
+[다음]
+</c:if>
+<c:if test="${paging.page<paging.maxPage}">
+<a href="Pet_Dog_Small?page=${paging.page+1}&pet_number=${view.pet_number}">[다음]</a>
+</c:if>
 <%@include file="footer-area.jsp"%>
 </body>
 </html>

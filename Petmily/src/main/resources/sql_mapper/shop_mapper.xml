@@ -59,6 +59,11 @@
  <update id="soldCount" parameterType="int">
  	UPDATE ITEM_SHOPPING SET item_soldcount = item_soldcount+1 WHERE ITEM_NUMBER=#{item_number}
  </update>
+ 
+ <!-- 구매내역  -->
+ <select id="purchase" parameterType="String" resultType="delivery">
+	SELECT * FROM DELIVERY WHERE ID = #{id}
+ </select>
 
  	
 

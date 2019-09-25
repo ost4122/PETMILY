@@ -1,73 +1,82 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
+<style>
+#idfind {
+	margin: 0 auto;
+	display: table;
+}
+</style>
 
-<script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script type="text/javascript"
+	src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script>
-   $(function(){
-      $("#findBtn").click(function(){
-    	  var selectemail = document.getElementById("selectemail").value;
-         $.ajax({
-            url : "find_id.do",
-            type : "POST",
-            data : {
-               name : $("#name").val(),
-               phone : $("#phone").val(),
-               email_1 : $("#email_1").val(),
-               email_2 : selectemail
-            },
-            success : function(result) {
-               alert(result);
-            },
-         });
-      });
-   });
-   function email_change(){
+	$(function() {
+		$("#findBtn").click(function() {
+			var name = document.getElementById("name").value;
+			var selectemail = document.getElementById("selectemail").value;
+			$.ajax({
+				url : "Login_IdFind",
+				type : "POST",
+				data : {
+					name : name,
+					phone : $("#phone").val(),
+					email_1 : $("#email_1").val(),
+					email_2 : selectemail,
+				},
+				success : function(result) {
+					alert(result);
+				},
+			});
+		});
+	});
+	function email_change() {
 
-		if(document.join.selectemail.options[document.join.selectemail.selectedIndex].value == '0'){
+		if (document.join.selectemail.options[document.join.selectemail.selectedIndex].value == '0') {
 
-		 document.join.email_2.disabled = true;
+			document.join.email_2.disabled = true;
 
-		 document.join.email_2.value = "";
-
-		}
-
-		if(document.join.selectemail.options[document.join.selectemail.selectedIndex].value == '9'){
-
-		 document.join.email_2.disabled = false;
-
-		 document.join.email_2.value = "";
-
-		 document.join.email_2.focus();
-
-		} else{
-
-		 document.join.email_2.disabled = true;
-
-		 document.join.email_2.value = document.join.selectemail.options[document.join.selectemail.selectedIndex].value;
+			document.join.email_2.value = "";
 
 		}
 
+		if (document.join.selectemail.options[document.join.selectemail.selectedIndex].value == '9') {
+
+			document.join.email_2.disabled = false;
+
+			document.join.email_2.value = "";
+
+			document.join.email_2.focus();
+
+		} else {
+
+			document.join.email_2.disabled = true;
+
+			document.join.email_2.value = document.join.selectemail.options[document.join.selectemail.selectedIndex].value;
+
 		}
-   
-   $(document).ready(function(){ 
 
-	    $("input#phone").blur(function(){
+	}
 
-	    	var num = $("#phone").val();
+	$(document).ready(function() {
 
-	    	blur(num)
+		$("input#phone").blur(function() {
 
-	    });
+			var num = $("#phone").val();
 
-	    $("input#phone").click(function(){
+			blur(num)
 
-	    	var num = $("#phone").val();
+		});
 
-	    	focus(num);
+		$("input#phone").click(function() {
 
-	    });
+			var num = $("#phone").val();
+
+			focus(num);
+
+		});
 
 	});
 
@@ -99,44 +108,54 @@
 
 	}
 </script>
-<title>비밀번호 찾기</title>
+<title>아이디 찾기</title>
 <!-- Style CSS -->
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/style.css" >
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/animate.css" >
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/bootstrap.min.css" >
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/font-awesome.min.css" >
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/owl.carousel.css" >
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/classy-nav.css" >
+<link rel="stylesheet" type="text/css"
+	href="${pageContext.request.contextPath}/resources/css/style.css">
+<link rel="stylesheet" type="text/css"
+	href="${pageContext.request.contextPath}/resources/css/animate.css">
+<link rel="stylesheet" type="text/css"
+	href="${pageContext.request.contextPath}/resources/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css"
+	href="${pageContext.request.contextPath}/resources/css/font-awesome.min.css">
+<link rel="stylesheet" type="text/css"
+	href="${pageContext.request.contextPath}/resources/css/owl.carousel.css">
+<link rel="stylesheet" type="text/css"
+	href="${pageContext.request.contextPath}/resources/css/classy-nav.css">
 </head>
 
 <body>
-<%@include file="header-area.jsp" %>
-   <div class="w3-content w3-container w3-margin-top">
-      <div class="w3-container w3-card-4">
-         <div class="w3-center w3-large w3-margin-top">
-            <h3>아이디 찾기</h3>
-         </div>
-         <div>
-         <form name="join">
-               <strong>이름</strong><br><input type="text" id="name" name="name" required><br>
-               <strong>휴대전화 </strong><br><input type="text" name="phone" id="phone" maxlength="13" required placeholder=" ('-'없이 번호만 입력해주세요)" style="width:230px;"><br>
-            <Strong>이메일</Strong><br><input type="text" name="email_1" id="email_1" onfocus="this.value='';">@
+	<%@include file="header-area.jsp"%>
+	<div class="w3-content w3-container w3-margin-top">
+		<div id="idfind">
+			<div class="w3-center w3-large w3-margin-top">
+				<h3>아이디 찾기</h3>
+			</div>
+			<div>
+				<form name="join">
+					<strong>이름</strong><br> <input type="text" id="name"
+						name="name" required><br> <strong>휴대전화 </strong><br>
+					<input type="text" name="phone" id="phone" maxlength="13" required
+						placeholder=" ('-'없이 번호만 입력해주세요)" style="width: 230px;"><br>
+					<Strong>이메일</Strong><br> <input type="text" name="email_1"
+						id="email_1" onfocus="this.value='';">@ <input type="text"
+						name="email_2" id="email_2" value="" disabled> <select
+						name="selectemail" id="selectemail" onchange="email_change()">
+						<option value="0">선택하세요</option>
+						<option value="9">직접입력</option>
+						<option value="daum.net">daum.net</option>
+						<option value="naver.com">naver.com</option>
+						<option value="gmail.com">gmail.com</option>
+						<option value="nate.com">nate.com</option>
+					</select><br>
+				</form>
 
-										<input type="text" name="email_2" id="email_2" value="" disabled >
-<select name="selectemail" id="selectemail" onchange="email_change()">
-    <option value="0" >선택하세요</option> 
-    <option value="9">직접입력</option>
-	<option value="daum.net">daum.net</option>
-    <option value="naver.com">naver.com</option>
-	<option value="gmail.com">gmail.com</option>
-    <option value="nate.com">nate.com</option> 
-   </select><br>
-               </form>
-               
-               <button type="button" id="findBtn" >아이디찾기</button>
-               <button type="button" onclick="history.go(-1);">뒤로가기</button>
-         </div>
-      </div>
-   </div>
+				<button type="button" id="findBtn">아이디찾기</button>
+				<button type="button" onclick="history.go(-1);">뒤로가기</button>
+			</div>
+		</div>
+	</div>
+
+	<%@include file="footer-area.jsp"%>
 </body>
 </html>

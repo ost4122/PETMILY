@@ -20,6 +20,7 @@ public class Delivery_DTO {
 	private int item_price;							// 용품 가격
 	private int deliveryPrice;						// 배송비
 	private String paymentOption;					// 결제방법
+	private String purchaseDate;
 	
 	/* 상품 프로필 */
 	private String item_profile;

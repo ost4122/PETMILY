@@ -16,15 +16,11 @@
     <!-- Title -->
     <title>Petmily</title>
 
+
 </head>
-<script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
-<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBt5_aiC-EvW15AysqqNwsr912NBpybnDk&callback=initMap"></script>  	
-<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=94955528495edea0c3e6aaf23f6c337b"></script>
 
 <body>
-  	<!-- ##### Header Area  ##### -->
-	<%@include file="header-area.jsp" %>
-
+<script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
     <!-- Preloader -->
     <div id="preloader">
         <div class="preload-content">
@@ -32,6 +28,8 @@
         </div>
     </div>
 
+  	<!-- ##### Header Area  ##### -->
+	<%@include file="header-area.jsp" %>
 
 
     <!-- ##### Breadcumb Area Start ##### -->
@@ -142,97 +140,14 @@
         </div>
     </div>
     <!-- ##### Cool Facts Area End ##### -->
-<div class="blog-wrapper section-padding-100-0 clearfix">
-        <div class="container">
-            <div class="row align-items-end">
-                <!-- Single Blog Area -->
-                <div class="col-12 col-lg-4">
-                    <div class="single-blog-area clearfix mb-100">
-                        <!-- Blog Content -->
-                        <div class="single-blog-content">
-                            <div class="line"></div>
-                            <a href="#" class="post-tag">Petmily</a>
-                            <h4><a href="#" class="post-headline"><strong>오시는길</strong></a></h4>
-		<div id="kakaomap" style="width:500px;height:380px;"></div>					
- 		<div id="googleMap" style="width:500px;height:380px;"></div>                      
-                        </div>
-                    </div>
-                </div>
-                <!-- Single Blog Area -->
-            </div>
-        </div>
-    </div>
-<script>
-var mapContainer = document.getElementById('kakaomap'), // 지도를 표시할 div 
-mapOption = { 
-    center: new kakao.maps.LatLng(37.438815, 126.675081), // 지도의 중심좌표
-    level: 1 // 지도의 확대 레벨
-};
-var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
 
-
-//마커가 표시될 위치입니다 
-var markerPosition  = new kakao.maps.LatLng(37.438815, 126.675081); 
-
-//마커를 생성합니다
-var marker = new kakao.maps.Marker({
-position: markerPosition
-});
-
-//마커가 지도 위에 표시되도록 설정합니다
-marker.setMap(map);
-
-//아래 코드는 지도 위의 마커를 제거하는 코드입니다
-//marker.setMap(null);    
-</script> 
-<script>
-
-function initialize() {
-
-
-
-  var LatLng = new google.maps.LatLng(37.438815, 126.675081);
-
-  var mapProp = {
-
-    center: LatLng, // 위치
-
-    zoom:19, // 어느정도까지 세세하게 볼 것인지.
-
-    mapTypeId:google.maps.MapTypeId.ROADMAP
-
-  };
-
-  var map=new google.maps.Map(document.getElementById("googleMap"),mapProp);
-
-
-
-
-
-  var marker = new google.maps.Marker({
-
-	position: LatLng,
-
-	map: map,
-
-	
-
-  });
-
-}
-
-google.maps.event.addDomListener(window, 'load', initialize);
-
-</script>
 
 
     
 	<!-- ##### footer Area  ##### -->
 	<%@include file="footer-area.jsp" %>
     
-   
-    
- 
+
 
 
 </body>

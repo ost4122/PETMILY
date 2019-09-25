@@ -34,6 +34,8 @@ public class ShopController {
 	private ShopService ssvc;
 	private ModelAndView mav;
 	
+	private HttpSession session;
+	
 	// 용품 등록 페이지
 	@RequestMapping(value = "/Shop_InputPage")
 	public String Shop_InputPage() {
@@ -180,7 +182,20 @@ public class ShopController {
 	}
 	// 2019 - 09 - 24 
 		
+	/* 구매 내역  */
+	@RequestMapping(value = "/purchase" )
+	public ModelAndView purchase(HttpSession session) {
 		
+		mav = new ModelAndView();
+		
+		String id = (String) session.getAttribute("sessionId");
+		
+		mav = ssvc.purchase(id);
+		
+		return mav;
+	
+		
+	}	
 		
 		
 	

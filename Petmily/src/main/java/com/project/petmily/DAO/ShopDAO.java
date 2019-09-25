@@ -60,6 +60,10 @@ public class ShopDAO {
 	public void soldCount(int item_number) {
 		 sql.update("soldCount", item_number);
 	}
+	/*구매 내역*/
+	public List<Delivery_DTO> purchase(String id) {
+		return sql.selectList("Shop.purchase",id);
+	}
 
 	
 }

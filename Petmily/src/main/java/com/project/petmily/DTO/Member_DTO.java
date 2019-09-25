@@ -1,6 +1,5 @@
 package com.project.petmily.DTO;
 
-import org.springframework.web.multipart.MultipartFile;
 
 import lombok.Data;
 
@@ -16,16 +15,13 @@ public class Member_DTO {
 	private String address_a; //���θ� �ּ�
 	private String address_b; //�����ּ�
 	private String address_c; //���ּ�
+	private String address_d; //�����׸�
 	private String email;
 	private String email_1;
 	private String email_2;
 	private String email_3;
 	private String selectemail;
-	private MultipartFile joinFile;
-	private String profileimage;
 	private String appoval_status; //���̵� ���� ���� 
-	
 	private String address;
-	
 	
 }

@@ -18,14 +18,6 @@
     <!-- Favicon -->
     <link rel="icon" type="text/css" href="${pageContext.request.contextPath}/resources/img/core-img/favicon.ico">
 
-    <!-- Style CSS -->
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/style.css" >
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/animate.css" >
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/bootstrap.min.css" >
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/font-awesome.min.css" >
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/owl.carousel.css" >
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/classy-nav.css" >
-
 </head>
 <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script>
@@ -38,29 +30,6 @@ function join(){
     <div id="preloader">
         <div class="preload-content">
             <div id="original-load"></div>
-        </div>
-    </div>
-
-    <!-- 로그인 모달창 -->
-    <div class="subscribe-newsletter-area">
-        <div class="modal fade" id="subsModal" tabindex="-1" role="dialog" aria-labelledby="subsModal" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered" role="document">
-                <div class="modal-content">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <div class="modal-body">
-                       <!--  <h5 class="title">Login</h5> -->
-                        <form action="memberlogin" class="newsletterForm" method="post">
-                            ID <input type="text" name="id" id="id" placeholder="아이디" required>
-                            PASSWORD <input type="password" name="password" id="password" placeholder="비밀번호" required>
-                            <button type="submit" class="btn original-btn">Login</button>
-                        </form>
-                    </div>
-                   <a href="login">로그인 하러가기</a>
-                    <a href="/petmily/find_id_fromJSP" class="btn original-btn">아이디 찾기</a>
-                     <a href="/petmily/find_pw_fromJSP" class="btn original-btn">비밀번호 찾기</a>
-                            <input type="button" class="btn original-btn" onclick="join();" value="회원가입">
-                </div>
-            </div>
         </div>
     </div>
 

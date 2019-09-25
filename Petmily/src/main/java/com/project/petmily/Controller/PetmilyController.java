@@ -28,10 +28,25 @@ public class PetmilyController {
 		return "home";
 	}
 	
-	/*맵 테스트*/
-	@RequestMapping(value = "kakaoMap")
-	public String kakaoMap() {
-		
-		return "kakaoMap";
+	/* 입양 후기로 이동 */
+	@RequestMapping(value = "/ar_board")
+	public String ar_board() {
+
+		return "AdoptReview_List";
 	}
+
+	/* 입양 후기 글쓰러 이동 */
+	@RequestMapping(value = "/ar_gowrite")
+	public String ar_gowrite() {
+
+		return "AdoptReview_Write";
+	}
+
+	/* 분양신청 후 예약완료창 */
+	@RequestMapping(value = "/adoptSuccess")
+	public String adoptSuccess() {
+
+		return "AdoptSuccess";
+	}
+
 }
