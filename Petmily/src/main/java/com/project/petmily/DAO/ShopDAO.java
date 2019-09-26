@@ -9,7 +9,6 @@ import org.springframework.stereotype.Repository;
 
 import com.project.petmily.DTO.Delivery_DTO;
 import com.project.petmily.DTO.Images_DTO;
-import com.project.petmily.DTO.Paging_DTO;
 import com.project.petmily.DTO.Shop_DTO;
 
 @Repository

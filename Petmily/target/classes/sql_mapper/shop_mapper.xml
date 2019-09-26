@@ -28,7 +28,7 @@
  </select>
  
  <!-- 용품 목록 -->
- <select id="shop_List" parameterType="pageDTO" resultType="shop">
+ <select id="shop_List" parameterType="page" resultType="shop">
  	SELECT * FROM ITEM_SHOPPING
  </select>
  

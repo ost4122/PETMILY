@@ -14,4 +14,6 @@ public class Page_DTO {
 	private int startRow;         // 
 	private int endRow;           //
 	
+	private int boardCount;
+	
 }

@@ -6,9 +6,8 @@
 		<typeAlias alias="member" type="com.project.petmily.DTO.Member_DTO"/>
 		<typeAlias alias="shop" type="com.project.petmily.DTO.Shop_DTO"/>
 		<typeAlias alias="imgDTO" type="com.project.petmily.DTO.Images_DTO"/>
-		<typeAlias alias="pageDTO" type="com.project.petmily.DTO.Paging_DTO"/>
 		<typeAlias alias="pet" type="com.project.petmily.DTO.Pet_DTO"/>	
-		<typeAlias alias="page" type="com.project.petmily.DTO.Paging_DTO"/>
+		<typeAlias alias="page" type="com.project.petmily.DTO.Page_DTO"/>
 		<typeAlias alias="delivery" type="com.project.petmily.DTO.Delivery_DTO"/>
 		<typeAlias alias="adopt" type="com.project.petmily.DTO.Adopt_DTO"/>
 		 <typeAlias alias="notice" type="com.project.petmily.DTO.Notice_DTO"/>

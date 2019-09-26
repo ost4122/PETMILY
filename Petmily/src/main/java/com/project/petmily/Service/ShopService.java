@@ -11,7 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.project.petmily.DAO.MemberDAO;
+import com.project.petmily.DAO.Member_DAO;
 import com.project.petmily.DAO.ShopDAO;
 import com.project.petmily.DTO.Delivery_DTO;
 import com.project.petmily.DTO.Images_DTO;
@@ -24,7 +24,7 @@ public class ShopService {
 	private ShopDAO sdao;
 	private ModelAndView mav;
 	@Autowired
-	private MemberDAO mdao;
+	private Member_DAO mdao;
 
 	/* 용품 등록 */
 	public ModelAndView Shop_Input(Images_DTO idto, Shop_DTO sdto, HttpServletResponse response) throws IOException {

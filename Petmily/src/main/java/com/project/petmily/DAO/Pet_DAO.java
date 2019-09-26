@@ -6,7 +6,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.project.petmily.DTO.Paging_DTO;
+import com.project.petmily.DTO.Page_DTO;
 import com.project.petmily.DTO.Pet_DTO;
 
 @Repository
