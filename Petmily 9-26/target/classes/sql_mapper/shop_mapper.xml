@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="Shop">
+<!-- 상품등록  -->
+	
+<insert id="shop_input" parameterType="shop" useGeneratedKeys="true" keyProperty="item_number">
+	INSERT INTO  item_shopping VALUES(item_numberSEQ.NEXTVAL,#{item_name},#{item_katagorie},#{item_contents},#{item_kind},#{item_price},0,0,0,0,#{item_Profile} )
+	
+	<selectKey keyProperty="item_number" resultType="int" order="AFTER">
+	SELECT item_numberSEQ.CURRVAL FROM DUAL
+	</selectKey>
+</insert>
+
+<!-- 다중파일 저장 -->
+<insert id="shop_images" parameterType="imgDTO">
+	INSERT INTO itemImages VALUES(#{item_Number},#{multiImg})
+	
+	<selectKey keyProperty="item_Number" resultType="Integer" order="BEFORE">
+	select count(*) from item_shopping
+	</selectKey>
+</insert>
+
+<!-- 용품 갯수 -->
+ <select id ="listCount"  resultType="int">
+	SELECT COUNT(*) FROM PAGING
+ </select>
+ 
+ <!-- 용품 목록 -->
+ <select id="shop_List" parameterType="pageDTO" resultType="shop">
+ 	SELECT * FROM ITEM_SHOPPING
+ </select>
+ 
+ <!-- 글 상세보기 -->
+ <select id="shop_View" parameterType="int" resultType="shop">
+ 	SELECT * FROM ITEM_SHOPPING WHERE ITEM_NUMBER = #{item_number}
+ </select>
+ 
+ <!-- 다중파일 가져오기 -->
+ <select id="multyImg" parameterType="int" resultType="imgDTO">
+ 	SELECT multiImg FROM itemImages WHERE ITEM_NUMBER = #{item_number}
+ </select>
+ 
+  <!-- 강아지 용품 목록 -->
+ <select id="puffyItem" resultType="shop" parameterType="String">
+ 	Select * from item_shopping where item_kind=#{item_kind}
+ </select>
+ 
+   <!-- 강아지 카테고리 검색  -->
+ <select id="puffyItems" resultType="shop" parameterType="shop">
+ 	Select * from item_shopping where item_kind=#{item_kind} and item_katagorie=#{item_katagorie}
+ </select>
+	<!-- 배송 신청   --> 
+ <insert id="delivery" parameterType="delivery">
+ 	INSERT INTO DELIVERY VALUES(#{item_number},#{name},#{id},#{email},#{phone},#{address},#{deliveryRequest},#{item_name},#{item_price},#{item_profile},#{paymentOption},SYSDATE)
+ </insert>
+	<!-- 판매 수 업데이트 -->
+ <update id="soldCount" parameterType="int">
+ 	UPDATE ITEM_SHOPPING SET item_soldcount = item_soldcount+1 WHERE ITEM_NUMBER=#{item_number}
+ </update>
+ 
+ <!-- 구매내역  -->
+ <select id="purchase" parameterType="String" resultType="delivery">
+	SELECT * FROM DELIVERY WHERE ID = #{id}
+ </select>
+
+ 	
+
+</mapper>

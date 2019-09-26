@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="AdoptReview">
+
+<!-- 후기글 쓰기 처리 -->
+	<insert id="ar_write" parameterType="ar"
+		useGeneratedKeys="true" keyProperty="ar_number">
+		INSERT INTO ADOPTREVIEW_BOARD VALUES(AR_NUMBER_SEQ.NEXTVAL,
+		#{pet_number},#{pet_kategorie},#{pet_name},#{ar_title},#{ar_writer},SYSDATE,0,#{ar_contents})
+		<selectKey keyProperty="ar_number" resultType="int"
+			order="AFTER">
+			SELECT AR_NUMBER_SEQ.CURRVAL FROM DUAL
+		</selectKey>
+	</insert>
+	
+	<!-- 게시판 목록(페이징) -->
+	<select id="ar_list" resultType="ar"
+		parameterType="page">
+		SELECT ARVIEW.*, ARVIEW.RN FROM ARVIEW WHERE
+		ARVIEW.RN
+		BETWEEN #{startRow} AND #{endRow} ORDER BY ARVIEW.RN DESC
+	</select>
+	
+	<!-- 후기글 갯수 가져오는 쿼리 -->
+	<select id="listCount" resultType="int">
+		SELECT COUNT(*) FROM ARVIEW
+	</select>
+	
+	<!-- 조회수 처리 -->
+	<update id="ar_hitCount" parameterType="int">
+		UPDATE ADOPTREVIEW_BOARD SET AR_VIEWHIT=AR_VIEWHIT+1 WHERE AR_NUMBER=#{ar_number}
+	</update>
+	
+	<!-- 후기글 상세보기 -->
+	<select id="ar_view" parameterType="int" resultType="ar">
+		SELECT * FROM ADOPTREVIEW_BOARD WHERE AR_NUMBER=#{ar_number}
+	</select>
+	
+</mapper>

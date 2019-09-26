@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<typeAliases> 
+		<typeAlias alias="member" type="com.project.petmily.DTO.Member_DTO"/>
+		<typeAlias alias="shop" type="com.project.petmily.DTO.Shop_DTO"/>
+		<typeAlias alias="imgDTO" type="com.project.petmily.DTO.Images_DTO"/>
+		<typeAlias alias="pageDTO" type="com.project.petmily.DTO.Paging_DTO"/>
+		<typeAlias alias="pet" type="com.project.petmily.DTO.Pet_DTO"/>	
+		<typeAlias alias="page" type="com.project.petmily.DTO.Paging_DTO"/>
+		<typeAlias alias="delivery" type="com.project.petmily.DTO.Delivery_DTO"/>
+		<typeAlias alias="adopt" type="com.project.petmily.DTO.Adopt_DTO"/>
+		 <typeAlias alias="notice" type="com.project.petmily.DTO.Notice_DTO"/>
+		 <typeAlias alias="ar" type="com.project.petmily.DTO.AdoptReview_DTO"/>
+	</typeAliases>
+</configuration>
