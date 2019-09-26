@@ -171,15 +171,9 @@
 
 											<li><a href="Pet_Reptile_List?page=1">파충류</a></li>
 										</ul></li>
-									<li><a href="contact.html">Pet Shop</a>
+									<li><a href="Shop_List">Pet Shop</a>
 										<ul class="dropdown">
-											<li><a href="#">사료</a>
-												<ul class="dropdown">
-													<li><a href="#">강아지 사료</a></li>
-													<li><a href="#">고양이 사료</a></li>
-													<li><a href="#">파충류 사료</a></li>
-												</ul></li>
-											
+																					
 											<li><a href="puffyItem?item_kind=강아지 용품">강아지 용품</a>
 													<ul class="dropdown">
 

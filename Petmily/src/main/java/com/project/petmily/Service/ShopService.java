@@ -173,7 +173,10 @@ public class ShopService {
 
 	/* 배송 신청 */
 	public ModelAndView Item_Delivery(Delivery_DTO ddto) {
+		
 		mav = new ModelAndView();
+		
+	
 		
 		int result = sdao.Item_Delivery(ddto);
 		
@@ -183,10 +186,10 @@ public class ShopService {
 			sdao.soldCount(ddto.getItem_number());
 			mav.addObject("totalPrice",totalPrice);
 			mav.addObject("buy",ddto );
-			mav.setViewName("buySuccess");
-		}else {
 			
+			mav.setViewName("redirect:/purchase");
 		}
+		
 		return mav;
 	}
 	
@@ -199,7 +202,19 @@ public class ShopService {
 		List<Delivery_DTO> result = sdao.purchase(id);
 		
 		mav.addObject("purchase", result);
-		mav.setViewName("Purchase");
+		mav.setViewName("Mypage_Purchase");
+		
+		return mav;
+	}
+
+	/* 리뷰 작성(전) 구매 정보 */
+	public ModelAndView purchase_select(int delivery_number) {
+		mav = new ModelAndView();
+		
+		Delivery_DTO selectResult = sdao.purchase_select(delivery_number);
+		
+		mav.addObject("purchase",selectResult);
+		mav.setViewName("Write_review");
 		
 		return mav;
 	}

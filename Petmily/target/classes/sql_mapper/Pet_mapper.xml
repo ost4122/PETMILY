@@ -1,193 +1,192 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-
-<mapper namespace="Pet">
-
-	<!-- 펫등록 -->
-	<insert id="admin_pet_writ" parameterType="pet"
-		useGeneratedKeys="true" keyProperty="pet_number">
-		INSERT INTO PET
-		VALUES(PET_NUMBER_SEQ.nextval,#{pet_size},#{pet_kategorie},#{pet_name},
-		#{pet_live},#{pet_hit},#{pet_price},#{pet_adopt},0,
-		#{pet_profile},#{pet_trailer},#{pet_contents},#{pet_inoculation},#{pet_img})
-		<selectKey keyProperty="pet_number" resultType="int"
-			order="AFTER">
-			SELECT PET_NUMBER_SEQ.CURRVAL FROM DUAL
-		</selectKey>
-	</insert>
-
-	<!-- 강아지 ALL목록 페이징 카운트 -->
-	<select id="Pet_Dog_allList_Count" resultType="int">
-		SELECT COUNT(*)
-		FROM PET WHERE pet_kategorie =#{pet_kategorie}
-	</select>
-
-	<!-- 강아지 ALL목록 페이징처리 -->
-	<select id="Pet_Dog_allList_Paging" resultType="pet"
-		parameterType="pet">
-		SELECT * FROM PET_LIST WHERE PET_LIST.RN BETWEEN #{startRow} AND #{endRow}
-		AND pet_kategorie= #{pet_kategorie}
-	</select>
-
-	<!-- 강아지상세 게시글불러오기 -->
-	<select id="Pet_Dog_View" parameterType="pet" resultType="pet">
-		SELECT * FROM PET WHERE pet_number=#{pet_number}
-	</select>
-
-	<!--펫 추천 -->
-	<update id="like_check" parameterType="pet">
-		UPDATE PET SET pet_hit =pet_hit+ 1 WHERE pet_number=#{pet_number}
-	</update>
-
-	<!-- 펫 추천 취소 -->
-	<update id="like_check_cancel" parameterType="pet">
-		UPDATE PET SET pet_hit =0 WHERE pet_number=#{pet_number}
-	</update>
-
-	<!--대형견 목록 페이징 카운트 -->
-	<select id="Pet_Dog_Big_Count" resultType="int">
-		SELECT COUNT(*) FROM
-		PET WHERE PET_SIZE = #{pet_size}
-	</select>
-
-	<!-- 대형견 목록 페이징처리 -->
-	<select id="Pet_Dog_Big" resultType="pet" parameterType="pet">
-		SELECT * FROM PET_LIST WHERE PET_LIST.RN BETWEEN #{startRow} AND #{endRow}
-		AND PET_SIZE= #{pet_size}
-	</select>
-
-	<!--중형견 목록 페이징 카운트 -->
-	<select id="Pet_Dog_Medium_Count" resultType="int">
-		SELECT COUNT(*)
-		FROM PET WHERE pet_size = #{pet_size}
-	</select>
-
-	<!-- 중형견 목록 페이징처리 -->
-	<select id="Pet_Dog_Medium" resultType="pet" parameterType="pet">
-		SELECT * FROM PET_LIST WHERE PET_LIST.RN BETWEEN #{startRow} AND
-		#{endRow} AND PET_SIZE= #{pet_size}
-	</select>
-	<!--소형견 목록 페이징 카운트 -->
-	<select id="Pet_Dog_Small_Count" resultType="int">
-		SELECT COUNT(*) FROM
-		PET WHERE PET_SIZE = #{pet_size}
-	</select>
-
-	<!-- 소형견 목록 페이징처리 -->
-	<select id="Pet_Dog_Small" resultType="pet" parameterType="pet">
-		SELECT * FROM PET_LIST WHERE PET_LIST.RN BETWEEN #{startRow} AND
-		#{endRow} AND PET_SIZE= #{pet_size}
-	</select>
-	<!--고양이 목록 페이징 카운트 -->
-	<select id="Pet_Cat_List_Count" resultType="int">
-		SELECT COUNT(*) FROM
-		PET WHERE pet_kategorie = #{pet_kategorie}
-	</select>
-
-	<!-- 고양이 목록 페이징처리 -->
-	<select id="Pet_Cat_List" resultType="pet" parameterType="pet">
-		SELECT * FROM PET_LIST WHERE PET_LIST.RN BETWEEN #{startRow} AND #{endRow}
-		AND pet_kategorie= #{pet_kategorie}
-	</select>
-
-	<!--파충류 목록 페이징 카운트 -->
-	<select id="Pet_Reptile_List_Count" resultType="int">
-		SELECT COUNT(*)
-		FROM PET WHERE pet_kategorie = #{pet_kategorie}
-	</select>
-
-	<!-- 파충류 목록 페이징처리 -->
-	<select id="Pet_Reptile_List" resultType="pet"
-		parameterType="pet">
-		SELECT * FROM PET_LIST WHERE PET_LIST.RN BETWEEN #{startRow} AND #{endRow}
-		AND pet_kategorie= #{pet_kategorie}
-	</select>
+ 
+ <mapper namespace="Pet"> 
+ 
+ <!-- 펫등록 -->
+ <insert id="admin_pet_writ" parameterType="pet" useGeneratedKeys="true" keyProperty="pet_number">
+INSERT INTO PET VALUES(PET_NUMBER_SEQ.nextval,#{pet_size},#{pet_kategorie},#{pet_name},
+#{pet_live},#{pet_hit},#{pet_price},#{pet_adopt},0,
+#{pet_profile},#{pet_trailer},#{pet_contents},#{pet_inoculation},#{pet_img})
+<selectKey keyProperty="pet_number" resultType="int" order="AFTER">
+SELECT PET_NUMBER_SEQ.CURRVAL FROM DUAL
+</selectKey>
+</insert>
 
 
-	<!-- 댓글쓰기 -->
+ 
+ <!-- 강아지 ALL목록  페이징 카운트  -->
+ <select id="Pet_Dog_allList_Count" resultType="int">
+      SELECT COUNT(*) FROM PET WHERE pet_kategorie =#{pet_kategorie}
+</select>
+<!--  <select id="Pet_Dog_allList_Count" resultType="int">
+select count(pet_number) from PET where pet_number > 0 and pet_kategorie like #{pet_kategorie}
+</select>-->
 
-	<insert id="commentWrite" parameterType="pet"
-		useGeneratedKeys="true" keyProperty="commentNumber">
-		INSERT INTO COMMENTS VALUES(COMMENT_SEQ.NEXTVAL,
-		#{comment_PET_NUMBER},#{commentWriter},#{commentContents},SYSDATE,#{commentSecret})
-		<selectKey keyProperty="commentNumber" resultType="int"
-			order="AFTER">
-			SELECT COMMENT_SEQ.CURRVAL FROM DUAL
-		</selectKey>
-	</insert>
+ 
+ <!-- 강아지 ALL목록 페이징처리 -->
+<!--  <select id="Pet_Dog_allList_Paging" resultType="pet" parameterType="pet">
+   SELECT * FROM PET_LIST WHERE PET_LIST.RN BETWEEN #{startRow} AND #{endRow}  AND pet_kategorie= #{pet_kategorie}
+</select> -->
+ <!-- <select id="Pet_Dog_allList_Paging" resultType="pet" parameterType="pet">
+ select *from (select pet_number, pet_size, pet_kategorie, pet_name,pet_live,pet_hit,pet_price,pet_adopt,adopt_confirm,pet_profile,pet_trailer,
+ pet_contents,PET_INOCULATION,pet_img,ROW_NUMBER()  over(order by pet_number desc)AS RN FROM PET  where pet_kategorie like #{pet_kategorie}) PET
+    where RN BETWEEN #{startRow} AND #{endRow}  order by pet_number desc;     
+</select> -->
 
-	<!-- 댓글 수정 -->
-	<update id="commentModifyUpdate" parameterType="pet">
-		UPDATE COMMENTS
-		SET COMMENTCONTENTS=#{commentContents}
-		WHERE COMMENTNUMBER=#{commentNumber}
-	</update>
-	<!-- 댓글삭제 -->
-	<delete id="commentDelete" parameterType="pet">
-		DELETE FROM COMMENTS
-		WHERE COMMENTNUMBER=#{commentNumber}
-	</delete>
-
-	<!-- 댓글 페이징 목록 불러오기 -->
-	<select id="commentListCount" resultType="int">
-		SELECT COUNT(*) FROM
-		COMMENTS
-	</select>
-
-	<!-- 댓글 목록 페이징처리 -->
-	<select id="commentList" resultType="pet" parameterType="pet">
-		SELECT *
-		FROM COMMENTLIST WHERE COMMENTLIST.RN BETWEEN #{startRow} AND
-		#{endRow} AND COMMENT_PET_NUMBER = #{comment_PET_NUMBER}
-	</select>
-
-	<!-- 분양글삭제 -->
-	<delete id="pet_Delete" parameterType="pet">
-		DELETE FROM PET WHERE
-		PET_NUMBER= #{pet_number}
-	</delete>
-
-	<!-- 글 수정전 게시글불러오기 -->
-	<select id="petmodifyView" parameterType="pet" resultType="pet">
-		SELECT * FROM PET WHERE PET_NUMBER=#{pet_number}
-	</select>
-
-	<!-- 글 수정 -->
-	<update id="pet_Modify" parameterType="pet">
-		UPDATE PET SET
-		pet_size=#{pet_size},
-		pet_kategorie=#{pet_kategorie},pet_name=#{pet_name},
-		pet_live=#{pet_live},pet_price=#{pet_price},
-		pet_adopt=#{pet_adopt},adopt_confirm=#{adopt_confirm},
-		pet_profile=#{pet_profile},pet_trailer=#{pet_trailer},pet_contents=#{pet_contents},pet_inoculation=#{pet_inoculation},
-		pet_img=#{pet_img}
-		WHERE pet_number=#{pet_number}
-	</update>
-
-	<!-- 대댓글쓰기 -->
-	<insert id="Smail_commentWrite" parameterType="pet"
-		useGeneratedKeys="true" keyProperty="smail_commentNumber">
-		INSERT INTO SMAIL_COMMENTS VALUES(SMAIL_COMMENT_SEQ.NEXTVAL,
-		#{smail_comment_PET_NUMBER},#{not_smail_commentNumber},#{smail_commentWriter},#{smail_commentContents},SYSDATE)
-		<selectKey keyProperty="smail_commentNumber"
-			resultType="int" order="AFTER">
-			SELECT SMAIL_COMMENT_SEQ.CURRVAL FROM DUAL
-		</selectKey>
-	</insert>
-
-	<!-- db에서 대댓글 가져오기 -->
-	<select id="Smail_commentList" resultType="pet"
-		parameterType="pet">
-		SELECT * FROM SMAIL_COMMENTS WHERE
-		smail_comment_PET_NUMBER =#{smail_comment_PET_NUMBER}
-		ORDER BY SMAIL_COMMENTNUMBER DESC
-	</select>
-
-	<!-- 강아지 name별로 리스트 -->
-	<select id="Pet_NameList" resultType="pet" parameterType="pet">
-		SELECT * FROM PET WHERE pet_name= #{pet_name}
-	</select>
+<select id="Pet_Dog_allList_Paging" resultType="pet" parameterType="pet">
+ select * from (select pet_number, pet_size, pet_kategorie,pet_name,pet_live,
+pet_hit,pet_price,pet_adopt,adopt_confirm,pet_profile,pet_trailer,pet_contents,PET_INOCULATION,pet_img,ROW_NUMBER() 
+over(order by Pet_number DESC)AS RN FROM PET_LIST where pet_kategorie like #{pet_kategorie}) PET where RN BETWEEN #{startRow} AND #{endRow} 
+</select>
 
 
-</mapper>
+
+ <!-- 강아지상세 게시글불러오기  -->
+<select id="Pet_Dog_View" parameterType="pet" resultType="pet">
+ SELECT * FROM PET WHERE pet_number=#{pet_number}
+</select>
+
+<!--펫 추천  -->
+<update id="like_check" parameterType="pet">
+    UPDATE PET SET pet_hit =pet_hit+ 1 WHERE pet_number=#{pet_number}
+  </update>
+  
+  <!-- 펫 추천 취소  -->
+<update id="like_check_cancel" parameterType="pet">
+     UPDATE PET SET pet_hit =0 WHERE pet_number=#{pet_number}
+  </update>
+  
+ <!--대형견 목록  페이징 카운트  -->
+<select id="Pet_Dog_Big_Count" resultType="int">
+      SELECT COUNT(*) FROM PET WHERE PET_SIZE = #{pet_size}
+</select>
+ 
+  <!-- 대형견 목록 페이징처리 -->
+<select id="Pet_Dog_Big" resultType="pet" parameterType="pet">
+   
+     select * from (select pet_number, pet_size, pet_kategorie,pet_name,pet_live,
+pet_hit,pet_price,pet_adopt,adopt_confirm,pet_profile,pet_trailer,pet_contents,PET_INOCULATION,pet_img,ROW_NUMBER() 
+over(order by Pet_number DESC)AS RN FROM PET_LIST where PET_SIZE like #{pet_size}) PET where RN BETWEEN #{startRow} AND #{endRow} 
+</select>
+ 
+  <!--중형견 목록  페이징 카운트  -->
+<select id="Pet_Dog_Medium_Count" resultType="int">
+      SELECT COUNT(*) FROM PET  WHERE pet_size = #{pet_size}
+</select>
+ 
+  <!-- 중형견 목록 페이징처리 -->
+<select id="Pet_Dog_Medium" resultType="pet" parameterType="pet">
+     select * from (select pet_number, pet_size, pet_kategorie,pet_name,pet_live,
+pet_hit,pet_price,pet_adopt,adopt_confirm,pet_profile,pet_trailer,pet_contents,PET_INOCULATION,pet_img,ROW_NUMBER() 
+over(order by Pet_number DESC)AS RN FROM PET_LIST where PET_SIZE like #{pet_size}) PET where RN BETWEEN #{startRow} AND #{endRow} 
+</select>
+ <!--소형견 목록  페이징 카운트  -->
+<select id="Pet_Dog_Small_Count" resultType="int">
+      SELECT COUNT(*) FROM PET  WHERE PET_SIZE = #{pet_size}
+</select>
+ 
+  <!-- 소형견 목록 페이징처리 -->
+<select id="Pet_Dog_Small" resultType="pet" parameterType="pet">
+     select * from (select pet_number, pet_size, pet_kategorie,pet_name,pet_live,
+pet_hit,pet_price,pet_adopt,adopt_confirm,pet_profile,pet_trailer,pet_contents,PET_INOCULATION,pet_img,ROW_NUMBER() 
+over(order by Pet_number DESC)AS RN FROM PET_LIST where PET_SIZE like #{pet_size}) PET where RN BETWEEN #{startRow} AND #{endRow} 
+</select>
+ <!--고양이 목록  페이징 카운트  -->
+<select id="Pet_Cat_List_Count" resultType="int">
+      SELECT COUNT(*) FROM PET  WHERE pet_kategorie = #{pet_kategorie}
+</select>
+ 
+  <!-- 고양이 목록 페이징처리 -->
+<select id="Pet_Cat_List" resultType="pet" parameterType="pet">
+  select * from (select pet_number, pet_size, pet_kategorie,pet_name,pet_live,
+pet_hit,pet_price,pet_adopt,adopt_confirm,pet_profile,pet_trailer,pet_contents,PET_INOCULATION,pet_img,ROW_NUMBER() 
+over(order by Pet_number DESC)AS RN FROM PET_LIST where pet_kategorie like #{pet_kategorie}) PET where RN BETWEEN #{startRow} AND #{endRow} 
+   
+</select>
+
+ <!--파충류 목록  페이징 카운트  -->
+<select id="Pet_Reptile_List_Count" resultType="int">
+      SELECT COUNT(*) FROM PET  WHERE pet_kategorie = #{pet_kategorie}
+</select>
+ 
+  <!-- 파충류 목록 페이징처리 -->
+<select id="Pet_Reptile_List" resultType="pet" parameterType="pet">
+ select * from (select pet_number, pet_size, pet_kategorie,pet_name,pet_live,
+pet_hit,pet_price,pet_adopt,adopt_confirm,pet_profile,pet_trailer,pet_contents,PET_INOCULATION,pet_img,ROW_NUMBER() 
+over(order by Pet_number DESC)AS RN FROM PET_LIST where pet_kategorie like #{pet_kategorie}) PET where RN BETWEEN #{startRow} AND #{endRow} 
+   
+</select>
+
+
+    <!-- 댓글쓰기  -->
+    
+  <insert id="commentWrite" parameterType="pet" useGeneratedKeys="true" keyProperty="commentNumber">
+    INSERT INTO COMMENTS VALUES(COMMENT_SEQ.NEXTVAL, #{comment_PET_NUMBER},#{commentWriter},#{commentContents},SYSDATE,#{commentSecret})
+    <selectKey keyProperty="commentNumber" resultType="int" order="AFTER">
+      SELECT COMMENT_SEQ.CURRVAL FROM DUAL
+      </selectKey>
+   </insert>
+ 
+  <!-- 댓글 수정 -->
+   <update id="commentModifyUpdate" parameterType="pet">
+      UPDATE COMMENTS SET COMMENTCONTENTS=#{commentContents} 
+         WHERE COMMENTNUMBER=#{commentNumber} 
+   </update>
+   <!-- 댓글삭제  -->
+   <delete id="commentDelete" parameterType="pet">
+      DELETE FROM COMMENTS WHERE COMMENTNUMBER=#{commentNumber}
+   </delete>
+   
+   <!-- 댓글 페이징 목록 불러오기  -->
+    <select id="commentListCount" resultType="int">
+      SELECT COUNT(*) FROM COMMENTS
+   </select>
+   
+   <!-- 댓글 목록 페이징처리 -->
+    <select id="commentList" resultType="pet" parameterType="pet">
+      SELECT * FROM COMMENTLIST WHERE COMMENTLIST.RN  BETWEEN #{startRow} AND #{endRow}  AND COMMENT_PET_NUMBER = #{comment_PET_NUMBER}
+   </select>
+  
+      <!--  분양글삭제  -->
+   <delete id="pet_Delete" parameterType="pet">
+      DELETE FROM PET WHERE PET_NUMBER= #{pet_number}
+   </delete>
+   
+   <!-- 글 수정전 게시글불러오기  -->
+     <select id="petmodifyView" parameterType="pet" resultType="pet">
+      SELECT * FROM PET WHERE PET_NUMBER=#{pet_number}
+   </select>
+   
+    <!-- 글 수정 -->
+   <update id="pet_Modify" parameterType="pet">
+      UPDATE PET SET pet_size=#{pet_size}, pet_kategorie=#{pet_kategorie},pet_name=#{pet_name},
+      pet_live=#{pet_live},pet_price=#{pet_price}, pet_adopt=#{pet_adopt},adopt_confirm=#{adopt_confirm},
+      pet_profile=#{pet_profile},pet_trailer=#{pet_trailer},pet_contents=#{pet_contents},pet_inoculation=#{pet_inoculation},
+      pet_img=#{pet_img}
+       WHERE pet_number=#{pet_number}
+   </update>
+   
+   <!-- 대댓글쓰기  -->
+    
+  <insert id="Smail_commentWrite" parameterType="pet" useGeneratedKeys="true" keyProperty="smail_commentNumber">
+    INSERT INTO SMAIL_COMMENTS VALUES(SMAIL_COMMENT_SEQ.NEXTVAL, #{smail_comment_PET_NUMBER},#{not_smail_commentNumber},#{smail_commentWriter},#{smail_commentContents},SYSDATE)
+    <selectKey keyProperty="smail_commentNumber" resultType="int" order="AFTER">
+      SELECT SMAIL_COMMENT_SEQ.CURRVAL FROM DUAL
+      </selectKey>
+   </insert>
+   
+      <!-- db에서 대댓글 가져오기 -->
+    <select id="Smail_commentList" resultType="pet" parameterType="pet">
+      SELECT * FROM SMAIL_COMMENTS WHERE smail_comment_PET_NUMBER =#{smail_comment_PET_NUMBER} 
+         ORDER BY SMAIL_COMMENTNUMBER DESC
+   </select> 
+   
+   <!-- 강아지 name별로 리스트  -->
+  <select id="Pet_NameList" resultType="pet" parameterType="pet">
+   SELECT * FROM PET WHERE pet_name= #{pet_name}
+   </select>
+   
+   
+ </mapper>

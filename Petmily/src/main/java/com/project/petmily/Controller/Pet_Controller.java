@@ -76,12 +76,12 @@ public class Pet_Controller {
 
 		MultipartFile pet_profile_file = pet_DTO.getPet_profile_file(); // 펫 프로필 사진
 		String fileName = pet_profile_file.getOriginalFilename();// 펫 프로필 사진
-		String savePath = "C:\\Users\\user\\Desktop\\Petmily (2)\\src\\main\\webapp\\resources\\petUploadFile\\"
+		String savePath = "C:\\Users\\user\\Desktop\\Petmily\\src\\main\\webapp\\resources\\petUploadFile\\"
 				+ fileName;
 
 		MultipartFile pet_img_file = pet_DTO.getPet_img_file();// 펫 상세보기 이미지
 		String pet_img = pet_img_file.getOriginalFilename();// 펫 상세보기 이미지
-		String savePath2 = "C:\\Users\\user\\Desktop\\Petmily (2)\\src\\main\\webapp\\resources\\petUploadFile\\"
+		String savePath2 = "C:\\Users\\user\\Desktop\\Petmily\\src\\main\\webapp\\resources\\petUploadFile\\"
 				+ pet_img;
 
 		if (!pet_profile_file.isEmpty()) {// 펫 프로필 사진

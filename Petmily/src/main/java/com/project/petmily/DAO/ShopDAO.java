@@ -63,6 +63,10 @@ public class ShopDAO {
 	public List<Delivery_DTO> purchase(String id) {
 		return sql.selectList("Shop.purchase",id);
 	}
+	/* 리뷰 작성(전) 구매 정보 */
+	public Delivery_DTO purchase_select(int delivery_number) {
+		return sql.selectOne("Shop.purchase_select", delivery_number);
+	}
 
 	
 }

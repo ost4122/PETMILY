@@ -48,13 +48,18 @@
  </select>
  
    <!-- 강아지 카테고리 검색  -->
- <select id="puffyItems" resultType="shop" parameterType="shop">
+ <select id="write_review" resultType="shop" parameterType="shop">
  	Select * from item_shopping where item_kind=#{item_kind} and item_katagorie=#{item_katagorie}
  </select>
+ 
 	<!-- 배송 신청   --> 
  <insert id="delivery" parameterType="delivery">
- 	INSERT INTO DELIVERY VALUES(#{item_number},#{name},#{id},#{email},#{phone},#{address},#{deliveryRequest},#{item_name},#{item_price},#{item_profile},#{paymentOption},SYSDATE)
+ 	INSERT INTO DELIVERY VALUES(delivery_SEQ.NEXTVAL,#{item_number},#{name},#{id},#{email},#{phone},#{address},#{deliveryRequest},#{item_name},#{item_price},#{item_profile},#{paymentOption},SYSDATE)
+ 	<selectKey keyProperty="delivery_number" resultType="Integer" order="AFTER">
+		SELECT delivery_SEQ.CURRVAL FROM DUAL
+	</selectKey>
  </insert>
+ 
 	<!-- 판매 수 업데이트 -->
  <update id="soldCount" parameterType="int">
  	UPDATE ITEM_SHOPPING SET item_soldcount = item_soldcount+1 WHERE ITEM_NUMBER=#{item_number}
@@ -64,6 +69,12 @@
  <select id="purchase" parameterType="String" resultType="delivery">
 	SELECT * FROM DELIVERY WHERE ID = #{id}
  </select>
+ 
+ <!--  리뷰 작성(전) 구매 정보 --> 
+ <select id="purchase_select" parameterType="int" resultType="delivery"> 
+ 	SELECT * FROM DELIVERY WHERE DELIVERY_NUMBER=#{delivery_number}
+ </select>
+ 
 
  	
 

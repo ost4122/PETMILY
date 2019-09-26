@@ -34,7 +34,6 @@ public class ShopController {
 	private ShopService ssvc;
 	private ModelAndView mav;
 	
-	private HttpSession session;
 	
 	// 용품 등록 페이지
 	@RequestMapping(value = "/Shop_InputPage")
@@ -169,7 +168,7 @@ public class ShopController {
 	
 	/* 배송 신청  */
 	@RequestMapping(value = "/Item_Delivery" )
-	public ModelAndView Item_Delivery(@ModelAttribute Delivery_DTO Ddto) throws IllegalStateException, IOException {
+	public ModelAndView Item_Delivery(@ModelAttribute Delivery_DTO Ddto) {
 		mav = new ModelAndView();
 		
 		
@@ -196,6 +195,22 @@ public class ShopController {
 	
 		
 	}	
+	
+	/* 구매 후기 작성 */
+	@RequestMapping(value = "/purchase_select" )
+	public ModelAndView purchase_select(@RequestParam("delivery_number") int delivery_number) {
+		
+		mav = new ModelAndView();
+		
+		
+		
+		mav = ssvc.purchase_select(delivery_number);
+		
+		return mav;
+	
+		
+	}	
+	
 		
 		
 	
