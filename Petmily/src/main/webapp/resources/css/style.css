@@ -1410,4 +1410,17 @@ textarea:focus ~ .highlight {
     opacity: 0; } }
 /* The End */
 
+.inputBtn{
+	width:120px;
+	height:38px;
+	border:none;
+	background-color:#346aff;
+	font-size:14px;
+	font-weight:bold;
+	color:#fff;
+	cursor:pointer;
+	outline:none;
+}
+
+
 /*# sourceMappingURL=style.css.map */

@@ -16,6 +16,7 @@ import com.project.petmily.DAO.ShopDAO;
 import com.project.petmily.DTO.Delivery_DTO;
 import com.project.petmily.DTO.Images_DTO;
 import com.project.petmily.DTO.Member_DTO;
+import com.project.petmily.DTO.Purchase_DTO;
 import com.project.petmily.DTO.Shop_DTO;
 
 @Service
@@ -207,7 +208,7 @@ public class ShopService {
 		return mav;
 	}
 
-	/* 리뷰 작성(전) 구매 정보 */
+	/* 구매후기 작성(전) 구매 정보 */
 	public ModelAndView purchase_select(int delivery_number) {
 		mav = new ModelAndView();
 		
@@ -215,6 +216,38 @@ public class ShopService {
 		
 		mav.addObject("purchase",selectResult);
 		mav.setViewName("Write_review");
+		
+		return mav;
+	}
+
+	/*구매 후기 작성 */
+	public ModelAndView write_review(Purchase_DTO pdto, HttpServletResponse response) throws IOException {
+		
+		mav = new ModelAndView();
+		
+		response.setContentType("text/html; charset=UTF-8");
+		PrintWriter out = response.getWriter();
+		
+		int inputResult = sdao.write_review(pdto);
+		
+		for(int i = 0 ; i < pdto.getReview_file().size(); i ++) {
+			pdto.setMultiImg(null);
+			pdto.setMultiImg(pdto.getReview_file().get(i));
+			
+			sdao.review_file(pdto);
+		}
+		
+		// 데이터 저장 성공시 
+		if(inputResult > 0 ) {
+			mav.setViewName("redirect:/Shop_View?item_number="+pdto.getItem_number());
+		}
+		// 데이터 저장 실패시
+		else {
+			out.print("<script>");
+			out.print("alert('리뷰작성 실패 !!')");
+			out.print("history.go(-1)");
+			out.print("</script>");
+		}
 		
 		return mav;
 	}

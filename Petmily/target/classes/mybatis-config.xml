@@ -10,7 +10,8 @@
 		<typeAlias alias="page" type="com.project.petmily.DTO.Page_DTO"/>
 		<typeAlias alias="delivery" type="com.project.petmily.DTO.Delivery_DTO"/>
 		<typeAlias alias="adopt" type="com.project.petmily.DTO.Adopt_DTO"/>
-		 <typeAlias alias="notice" type="com.project.petmily.DTO.Notice_DTO"/>
-		 <typeAlias alias="ar" type="com.project.petmily.DTO.AdoptReview_DTO"/>
+		<typeAlias alias="notice" type="com.project.petmily.DTO.Notice_DTO"/>
+		<typeAlias alias="ar" type="com.project.petmily.DTO.AdoptReview_DTO"/>
+		<typeAlias alias="pReview" type="com.project.petmily.DTO.Purchase_DTO"/>
 	</typeAliases>
 </configuration>

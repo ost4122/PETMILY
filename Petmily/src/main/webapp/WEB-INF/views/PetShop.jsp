@@ -6,11 +6,19 @@
 <head>
 <meta charset="UTF-8">
 <title>Petmily</title>
-
 </head>
+
+<style>
+.itemList{
+    display: inline-block;
+	margin-left : 420px;
+}
+
+</style>
+
 <body>
 <%@include file="header-area.jsp" %>
-
+	<div class="itemList">
 	<c:forEach items="${ItemList}" var="ItemList">
 		<div class="catagory-title" style="display:inline-block; text-align:center;">
 		<a href="Shop_View?item_number=${ItemList.item_number}">
@@ -25,32 +33,8 @@
 		</div>
 	
 	</c:forEach>
-<hr>	
-<!-- 페이징 처리 -->
-<%-- <c:if test="${paging.page<=1}">
-	[이전]&nbsp;
-</c:if>
-<c:if test="${paging.page>1}">
-	<a href="Shop_List?page=${paging.page-1}">[이전]</a>&nbsp;	
-</c:if>
-<c:forEach begin="${paging.startPage}" end="${paging.endPage}" var="i" step="1">
-	<c:choose>
-								
-		<c:when test="${i eq paging.page}">
-			${i}
-		</c:when>
-		<c:otherwise>
-			<a href="Shop_List?page=${i}">${i}</a>
-		</c:otherwise>
-	</c:choose>
-</c:forEach>
+	</div>
 
-<c:if test="${paging.page>=paging.maxPage}">
-[다음]
-</c:if>
-<c:if test="${paging.page<paging.maxPage}">
-<a href="Shop_List?page=${paging.page+1}">[다음]</a>
-</c:if> --%>
 
 <%@include file="footer-area.jsp" %>
 

@@ -51,7 +51,7 @@
 <h2>${Item.item_name}</h2>
 <p>${Item.item_reviewCount }개 상품평</p>
 <strong>${Item.item_price }원</strong>
-<button id="btn"onclick="buy();">구매하기</button>
+<button onclick="buy();" class="inputBtn">구매하기</button>
 
 <hr>
 

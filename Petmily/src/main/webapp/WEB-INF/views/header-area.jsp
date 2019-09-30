@@ -141,7 +141,7 @@
 									<c:if test="${sessionScope.sessionId eq 'admin'}">
 										<li><a href="#">Admin</a>
 											<ul class="dropdown">
-												<li><a href="aboutUs">펫 용품 등록</a></li>
+												<li><a href="Shop_InputPage">펫 용품 등록</a></li>
 												<li><a href="admin_pet">펫 등록</a></li>
 												<li><a href="#">전체 회원 리스트</a></li>
 												<li><a href="#">예약 신청 게시판</a></li>
@@ -189,11 +189,12 @@
 
 												</ul></li>
 											
-											<li><a href="Item_cat">고양이 용품</a>
+											<li><a href="puffyItem?item_kind=고양이 용품">고양이 용품</a>
 												<ul class="dropdown">
-													<li><a href="#">고양이 장난감</a></li>
-													<li><a href="#">고양이 미용용품</a></li>
-													<li><a href="#">고양이 옷/잡화</a></li>
+													<li><a href="puffyItems?item_kind=고양이 용품&item_katagorie=장난감">고양이 장난감</a></li>
+													<li><a href="puffyItems?item_kind=고양이 용품&item_katagorie=미용">고양이 미용용품</a></li>
+													<li><a href="puffyItems?item_kind=고양이 용품&item_katagorie=옷/잡화">고양이 옷/잡화</a></li>
+													<li><a href="puffyItems?item_kind=고양이 용품&item_katagorie=기타">기타</a></li>
 												</ul></li>
 
 											<li><a href="#">파충류 용품</a>

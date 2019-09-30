@@ -75,6 +75,23 @@
  	SELECT * FROM DELIVERY WHERE DELIVERY_NUMBER=#{delivery_number}
  </select>
  
+ <!-- 구매 후기 작성-->
+ <insert id="writer_review" parameterType="pReview">
+ 	INSERT INTO purchase_review VALUES(pReview_SEQ.NEXTVAL,#{item_number},#{review_writer},#{review_contents},0,SYSDATE,#{review_design},#{review_handiness})
+ 	<selectKey keyProperty="review_number" resultType="pReview" order="AFTER">
+		SELECT pReview_SEQ.CURRVAL FROM DUAL
+	</selectKey>
+ </insert> 
+ 
+ <!-- 구매후기 다중파일  -->
+<insert id="review_file" parameterType="pReview" >
+	INSERT INTO pReview_file VALUES(#{review_number},#{multiImg})
+	
+	<selectKey keyProperty="review_number" resultType="Integer" order="BEFORE">
+	select count(*) from purchase_review
+	</selectKey>
+</insert>
+ 
 
  	
 

@@ -25,6 +25,9 @@
             color:white;
             background-color: skyblue;
         }
+        .buy{
+        	margin-left : 500px;
+        }
     </style>
 <body>
   <script>
@@ -32,8 +35,8 @@
     	
     	if(document.querySelector('input[name="paymentOption"]:checked').value == "KakaoPay"){
     		code = 'imp81171428';
-    	}else{
-    		code = null;
+    	}else if(document.querySelector('input[name="paymentOption"]:checked').value == "신용/체크카드"){
+    		code = 'imp49323111';
     	}
     	
     	var itemName = document.getElementById("item_name").value
@@ -96,19 +99,20 @@
 
 
 <%@include file="header-area.jsp" %>
-<h1>주문/결제</h1><hr>
+<div class="buy">
+<h1>주문/결제</h1><br>
 
 <h3>구매자 정보</h3>
-<table border="1">
+<table>
 <tr><td><strong>이름</strong></td><td>${member.name}</td></tr>
 <tr><td><strong>이메일</strong></td><td>${member.email}</td></tr>
 <tr><td><strong>휴대폰 번호</strong></td><td>${member.phone}</td></tr>
 </table>
-
+<br>
 <h3>배송지 정보</h3>
 <form action="Item_Delivery" method="post" name="Delivery">
 
-<table border="1">
+<table >
 <tr><td><strong>이름</strong></td><td>${member.name}</td></tr>
 <tr><td><strong>배송주소</strong></td><td>${member.address}</td></tr>
 <tr><td><strong>연락처</strong></td><td>${member.phone}</td></tr>
@@ -119,11 +123,11 @@
 									<option value="경비실">경비실</option>				
 													</select></td></tr>
 </table>
-
+<br>
 <h3>결제 정보</h3>
 <input type = "hidden" value="${totalPrice}" id="totalPrice"/>
 
-<table border="1">
+<table >
 
 <tr><td><strong>상품</strong></td><td><img src="${pageContext.request.contextPath}/resources/shopIMG/${item.item_Profile}" width="200px" height="100px"/></td></tr>
 <tr><td><strong>가격</strong></td><td><input type="hidden" id="Itemprice" value=${item.item_price}>${item.item_price}원</td></tr>
@@ -148,7 +152,8 @@
 
 </form>
 
-<button id="btn"onclick="buy();">결제하기</button>
+<button class="inputBtn"onclick="buy();">결제하기</button>
+</div>
 
 <%@include file="footer-area.jsp" %>
 </body>

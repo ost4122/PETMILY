@@ -23,6 +23,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.project.petmily.DTO.Delivery_DTO;
 import com.project.petmily.DTO.Images_DTO;
+import com.project.petmily.DTO.Purchase_DTO;
 import com.project.petmily.DTO.Shop_DTO;
 import com.project.petmily.Service.ShopService;
 
@@ -196,7 +197,7 @@ public class ShopController {
 		
 	}	
 	
-	/* 구매 후기 작성 */
+	/* 구매 후기 작성 전 구매 정보 불러오기 */
 	@RequestMapping(value = "/purchase_select" )
 	public ModelAndView purchase_select(@RequestParam("delivery_number") int delivery_number) {
 		
@@ -209,7 +210,59 @@ public class ShopController {
 		return mav;
 	
 		
-	}	
+	}
+	
+	/* 구매후기 작성 */
+	@RequestMapping(value="write_review")
+	public ModelAndView write_review(@ModelAttribute Purchase_DTO pdto,HttpSession session,
+			HttpServletResponse response) throws IllegalStateException, IOException {
+		
+		mav = new ModelAndView();
+		
+		//세션값을 작성자 값에 셋팅
+		String writer = (String) session.getAttribute("sessionId");
+		pdto.setReview_writer(writer);
+		
+		
+		List<MultipartFile> inputImages = pdto.getInputImages();
+		
+		
+		List<String> review_file = new ArrayList<String>();
+
+        
+        for (MultipartFile mf : inputImages) {
+        	
+        	String originFileName = mf.getOriginalFilename();// 원본 파일 명
+        	
+        	String path = "C:\\Users\\user\\git\\PETMILY\\Petmily\\src\\main\\webapp\\resources\\purchase_Review_IMG\\"+originFileName;
+        	
+        	//originFileName = rename;
+        	
+        	long fileSize = mf.getSize(); // 파일 사이즈
+            
+           
+            	if(!inputImages.isEmpty()) {
+            		mf.transferTo(new File(path));
+            	}
+            
+            review_file.add(originFileName);
+            // 다중파일 업로드 imagesDTO에 셋팅
+            pdto.setReview_file(review_file);
+         
+        }
+		
+        /*
+		 * System.out.println("★★★★★★:" + pdto.getItem_number());
+		 * System.out.println("★★★★★★:" + pdto.getReview_contents());
+		 * System.out.println("★★★★★★:" + pdto.getReview_design());
+		 * System.out.println("★★★★★★:" + pdto.getReview_handiness());
+		 */
+        
+        mav = ssvc.write_review(pdto,response);
+		
+		
+		return mav;
+	}
 	
 		
 		

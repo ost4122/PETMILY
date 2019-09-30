@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import com.project.petmily.DTO.Delivery_DTO;
 import com.project.petmily.DTO.Images_DTO;
+import com.project.petmily.DTO.Purchase_DTO;
 import com.project.petmily.DTO.Shop_DTO;
 
 @Repository
@@ -66,6 +67,14 @@ public class ShopDAO {
 	/* 리뷰 작성(전) 구매 정보 */
 	public Delivery_DTO purchase_select(int delivery_number) {
 		return sql.selectOne("Shop.purchase_select", delivery_number);
+	}
+	/* 구매후기 작성 */
+	public int write_review(Purchase_DTO pdto) {
+		return sql.insert("Shop.writer_review", pdto);
+	}
+	/* 구매후기 다중파일 저장 */
+	public void review_file(Purchase_DTO pdto) {
+		sql.insert("Shop.review_file", pdto);
 	}
 
 	
