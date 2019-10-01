@@ -76,6 +76,18 @@ public class ShopDAO {
 	public void review_file(Purchase_DTO pdto) {
 		sql.insert("Shop.review_file", pdto);
 	}
+	/* 상품리뷰 갯수 증가 */
+	public void review_count(int item_number) {
+		sql.update("Shop.review_count", item_number);
+	}
+	/* 리뷰 가져오기 */
+	public List<Purchase_DTO> getReview(int item_number) {
+		return sql.selectList("Shop.getReview", item_number);
+	}
+	/* 리뷰 첨부파일 가져오기*/
+	public List<String> getReviewImg(int review_number) {
+		return sql.selectList("Shop.getReviewImg", review_number);
+	}
 
 	
 }

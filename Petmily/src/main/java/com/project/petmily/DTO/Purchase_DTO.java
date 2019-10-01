@@ -29,6 +29,7 @@ public class Purchase_DTO {
 	private int review_hit;
 	
 	
+	
 	//구매후기 첨부 파일
 	private List<MultipartFile> inputImages;
 	private List<String> review_file;
